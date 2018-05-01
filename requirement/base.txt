@@ -1,0 +1,16 @@
+# Current framework
+# https://docs.djangoproject.com/en/1.11/
+Django==1.11.4
+
+# PostgreSQL adapter
+# http://pythonhosted.org/psycopg2/
+psycopg2==2.7.3
+
+# Django environtment
+# https://github.com/joke2k/django-environ
+django-environ==0.4.4
+
+#django-datatables-view
+# https://bitbucket.org/pigletto/django-datatables-view
+django-datatables-view==1.14.0
+
