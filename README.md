@@ -6,7 +6,7 @@
 
   - clone project disini git@github.com:muhamadrusdisyahren/agrakom.git
   - masuk ke dalam folder project /agrakom/
-  - katik commend di bawah :
+  - ketik command di bawah :
     ```sh
     $  pip3 install -r /requirement/base.txt
     $  export DJANGO_SETTINGS_MODULE=config.settings

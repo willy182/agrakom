@@ -20,7 +20,7 @@ class SliderAboutUs(models.Model):
     class Meta:
         db_table = 'slider_about_us'
 
-    Aboutus = models.ForeignKey(AboutUs)
+    about_us = models.ForeignKey(AboutUs)
     position =  models.IntegerField(blank=True, null=True)
     image = models.FileField(blank=True, null=True, upload_to='images/slider')
     caption =  models.CharField(max_length=225,blank=True, null=True)

@@ -22,7 +22,7 @@ class DetailGalery(models.Model):
     class Meta:
         db_table = 'detail_galery'
 
-    AwardsGalery = models.ForeignKey(AwardsGalery)
+    awards_galery = models.ForeignKey(AwardsGalery)
     image = models.FileField(blank=True, null=True, upload_to='images/detail_galery')
     caption =  models.CharField(max_length=225,blank=True, null=True)
     status = models.BooleanField(blank=True)
