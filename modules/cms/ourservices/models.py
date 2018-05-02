@@ -20,7 +20,7 @@ class OurServiceDetail(models.Model):
     class Meta:
         db_table = 'our_service_detail'
 
-    Ourservices = models.ForeignKey(OurServices)
+    our_services = models.ForeignKey(OurServices)
     title = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
     image = models.FileField(blank=True, null=True, upload_to='images/services')

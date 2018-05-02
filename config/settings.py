@@ -13,6 +13,27 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import environ
 
+
+env = environ.Env()
+
+# Operating System Environment variables have precedence over variables defined in the env.dev file,
+# that is to say variables from the env.dev files will only be used if not defined
+# as environment variables.
+
+ROOT_DIR = environ.Path(__file__) - 2  # (agrakom_project/config/settings.py - 2 = agrakom/)
+APPS_DIR = ROOT_DIR.path('modules')
+
+# Load operating system environment variables and then prepare to use them
+env = environ.Env()
+
+# Operating System Environment variables have precedence over variables defined in the env.dev file,
+# that is to say variables from the env.dev files will only be used if not defined
+# as environment variables.
+env_file = str(ROOT_DIR.path('environment/env.development'))
+print('Loading : {}'.format(env_file))
+env.read_env(env_file)
+print('The .env file has been loaded. See base.py for more information')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,10 +46,8 @@ SECRET_KEY = 'p*t)n3m(npxyhj&^jf*)#us1(wan2z9ewz%xh2k07i2^ei#%+o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
 
-ROOT_DIR = environ.Path(__file__) - 3  # (marlin_project/config/settings/base.py - 3 = marlin/)
-APPS_DIR = ROOT_DIR.path('modules')
+
 
 # Application definition
 EXTERNAL_APPS = [
@@ -83,18 +102,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agrakom',
-        'USER': 'muhamadrusdisyahren',
-        'PASSWORD': 'dprdprri',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': env.db('DATABASE_URL', default='postgres:///agrakom'),
 }
+
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['0.0.0.0', ])
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
