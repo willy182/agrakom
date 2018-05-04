@@ -20,8 +20,8 @@ env = environ.Env()
 # that is to say variables from the env.dev files will only be used if not defined
 # as environment variables.
 
-ROOT_DIR = environ.Path(__file__) - 2  # (agrakom_project/config/settings.py - 2 = agrakom/)
-APPS_DIR = ROOT_DIR.path('modules')
+ROOT_DIR = environ.Path(__file__) - 3  # (agrakom_project/config/settings.py - 2 = agrakom/)
+APPS_DIR = ROOT_DIR.path('agrakom')
 
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
@@ -29,7 +29,7 @@ env = environ.Env()
 # Operating System Environment variables have precedence over variables defined in the env.dev file,
 # that is to say variables from the env.dev files will only be used if not defined
 # as environment variables.
-env_file = str(ROOT_DIR.path('environment/env.development'))
+env_file = str(APPS_DIR.path('environment/env.development'))
 print('Loading : {}'.format(env_file))
 env.read_env(env_file)
 print('The .env file has been loaded. See base.py for more information')
@@ -47,11 +47,10 @@ SECRET_KEY = 'p*t)n3m(npxyhj&^jf*)#us1(wan2z9ewz%xh2k07i2^ei#%+o'
 DEBUG = True
 
 
-
-
 # Application definition
 EXTERNAL_APPS = [
     'modules.cms.aboutus',
+    'modules.cms.dashboard',
     'modules.cms.awards',
     'modules.cms.contactus',
     'modules.cms.ourclients',
@@ -86,15 +85,26 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': str(APPS_DIR.path('templates')),
-        'APP_DIRS': True,
+        'DIRS': [
+            str(APPS_DIR.path('templates')),
+        ],
         'OPTIONS': {
+            'debug': DEBUG,
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
@@ -146,4 +156,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC FILE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = env('STATIC_URL', default='/static/')
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = [
+    str(APPS_DIR.path('static')),
+]
