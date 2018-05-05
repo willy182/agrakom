@@ -29,7 +29,7 @@ env = environ.Env()
 # Operating System Environment variables have precedence over variables defined in the env.dev file,
 # that is to say variables from the env.dev files will only be used if not defined
 # as environment variables.
-env_file = str(APPS_DIR.path('environment/env.development'))
+env_file = str(APPS_DIR.path('.env'))
 print('Loading : {}'.format(env_file))
 env.read_env(env_file)
 print('The .env file has been loaded. See base.py for more information')
