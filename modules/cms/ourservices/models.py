@@ -10,9 +10,9 @@ class OurServices(models.Model):
     title = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
     status = models.BooleanField(blank=True)
-    created_by = models.ForeignKey(User, blank=True, null=True, db_column='created_by', related_name='%(class)s_created_by')
+    created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING,db_column='created_by', related_name='%(class)s_created_by')
     created_datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    modified_by = models.ForeignKey(User, blank=True, null=True, db_column='modified_by', related_name='%(class)s_modified_by')
+    modified_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING, db_column='modified_by', related_name='%(class)s_modified_by')
     modified_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)
 
 
@@ -20,14 +20,13 @@ class OurServiceDetail(models.Model):
     class Meta:
         db_table = 'our_service_detail'
 
-    our_services = models.ForeignKey(OurServices)
+    our_services = models.ForeignKey(OurServices, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
     image = models.FileField(blank=True, null=True, upload_to='images/services')
-    caption =  models.CharField(max_length=225,blank=True, null=True)
+    caption = models.CharField(max_length=225, blank=True, null=True)
     status = models.BooleanField(blank=True)
-    created_by = models.ForeignKey(User, blank=True, null=True, db_column='created_by', related_name='%(class)s_created_by')
+    created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING,db_column='created_by', related_name='%(class)s_created_by')
     created_datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    modified_by = models.ForeignKey(User, blank=True, null=True, db_column='modified_by', related_name='%(class)s_modified_by')
+    modified_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING, db_column='modified_by', related_name='%(class)s_modified_by')
     modified_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)
-

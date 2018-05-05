@@ -20,7 +20,7 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    url(r'^', include('modules.cms.dashboard.urls', namespace='dashboard')),
-    url(r'^about-us/', include('modules.cms.aboutus.urls', namespace='about-us')),
+    url(r'^', include('modules.cms.dashboard.urls')),
+    url(r'^about-us/', include('modules.cms.aboutus.urls')),
 
 ]
