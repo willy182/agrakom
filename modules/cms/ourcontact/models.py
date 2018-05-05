@@ -20,7 +20,7 @@ class OurContact(models.Model):
 
 class Sosmed(models.Model):
     class Meta:
-        db_table = 'detail_galery'
+        db_table = 'sosmed'
 
     our_contact = models.ForeignKey(OurContact)
     image = models.FileField(blank=True, null=True, upload_to='images/sosmed')
