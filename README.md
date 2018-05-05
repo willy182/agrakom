@@ -4,12 +4,11 @@
 
 # HOW TO START!
 
-  - clone project disini git@github.com:muhamadrusdisyahren/agrakom.git
-  - masuk ke dalam folder project /agrakom/
-  - ketik command di bawah :
     ```sh
-    $  pip3 install -r /requirement/base.txt
+    $  virtualenv -p python3 env
+    $  source env/bin/activate
+    $  pip install -r requirement.txt
     $  export DJANGO_SETTINGS_MODULE=config.settings
-    $  python3 manage.py migrate
-    $  python3 manage.py runserver 0.0.0.0:8000
+    $  python manage.py migrate
+    $  python manage.py runserver 0.0.0.0:8000
     ```
