@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('our_contact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ourcontact.OurContact')),
             ],
             options={
-                'db_table': 'detail_galery',
+                'db_table': 'sosmed',
             },
         ),
     ]
