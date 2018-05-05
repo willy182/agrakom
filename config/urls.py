@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 
 # from django.contrib import admin
-
+from modules.frontend.views import HomeAgrakom
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
+    url(r'^$', HomeAgrakom.as_view(), name='home'),
     url(r'^cms-agrakom', include('modules.cms.dashboard.urls')),
     url(r'^cms-agrakom/about-us', include('modules.cms.aboutus.urls')),
 

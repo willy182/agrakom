@@ -1,10 +1,526 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'frontend/layout/base.html' %}
+{% load static %}
 
-</body>
-</html>
+	{% block content %}
+	<!-- Banner -->
+	<div id="header-wrapper">
+		<header class="clearfix">
+			<!-- Content slider -->
+			<div class="container">
+				<div class="row">
+					<div class="span12">
+						<div id="main-flexslider" class="flexslider"></div>
+					</div>
+				</div>
+			</div>
+			<!-- ENd content slider -->
+		</header>
+	</div>
+	<div class="clearfix"></div>
+	<!-- End Banner -->
+
+	<!-- Abour section -->
+	<section id="about" class="section">
+		<!-- section heading -->
+		<div class="container">
+			<div class="heading">
+				<h4 class="uppercase">Who We Are</h4>
+			</div>
+		</div>
+		<!-- end section heading -->
+		<!-- about block -->
+		<div id="info" class="section">
+			<div class="container">
+				<div class="row">
+					<!--About us -->
+					<div class="span12">
+						<div>
+							<h3 class="uppercase">About <strong>us</strong></h3>
+							<p>
+								PT. Agrakom Para Relatika (AgrakomPR) is an Indonesia independent local agency that was established in 1997.
+								We have been trusted to handle blue chip clients in retainer and ad-hoc basis with 10 – 15 clients annually.
+								Our team comes from various educational backgrounds including Communications, Law, Economics, Journalism, Engineering and Agriculture that makes it easier to handle clients with diverse business and interests.
+							</p>
+							<p>
+								We believe in our work values: Commitment, Creativity, Flexibility, Result and Honesty, everytime we do our job, together with Zest and Enthusiasm for the account as our work spirit.
+								We have a good understanding on local market, network in Java, Sumatera, Kalimantan, Bali, as well as a strong relationship with media across all industries.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- GALLERY -->
+		<section id="studio" class="section">
+			<div class="container aligncenter">
+				<h2 class="uppercase"><strong>Awards</strong></h2>
+			</div>
+			<!--gallery slider -->
+			<div class="studio">
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="swiper" class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="{% static 'img/award.jpg' %}" alt="slider image 1" ></div>
+								<div class="swiper-slide"><img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="slider image 2"></div>
+								<div class="swiper-slide"><img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="slider image 3"/></div>
+								<div class="swiper-slide"><img src="{% static 'img/mix-best-service-agency.jpg' %}" alt="slider image 4"/></div>
+								<div class="swiper-slide"><img src="{% static 'img/mix-best-team.jpg' %}" alt="slider image 5"/></div>
+								<div class="swiper-slide"><img src="{% static 'img/mix-silver-winner.jpg' %}" alt="slider image 6"/></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--End gallery slider -->
+		</section>
+		<!-- END GALLERY SECTION -->
+	</section>
+	<!--End about section -->
+
+	<!--Team Section -->
+	<section id="team" class="section">
+		<div class="container">
+			<!-- heading -->
+			<div class="heading">
+				<h4 class="uppercase">Our Services</h4>
+				<h5>We provide One Stop Solutions for our various clients with Public Relations, Social Media and Marketing Services to support the program.</h5>
+			</div>
+			<!-- End heading -->
+			<!-- team block -->
+			<div class="row exp_block">
+				<!-- block-1 -->
+				<div class="span4 flyIn">
+					<a class="exp_tt">
+						<img alt="Public Relation" class="face" src="{% static 'img/pr.jpg' %}">
+						<div class="clearfix"></div>
+						<h3 class="link_exp uppercase">Public Relation</h3>
+						<div class="clearfix"></div>
+						<p>As our main core business, we support all round Public Relations activities in media relations:
+							Press Releases – Interviews – Press Briefings – Press Conference – Tele Video Conference – Story Pitch – Media Visit – Technology Updates – Media Seeding/Review – Media Coaching – Media Tracking – Translation</p>
+						<p>We do also support of General Consultancy services for Government Affairs and Public Affairs.</p>
+					</a>
+				</div>
+				<!-- block-2 -->
+				<div class="span4 flyIn">
+					<a class="exp_tt">
+						<img alt="Marketing Services" class="face" src="{% static 'img/marketing.jpg' %}">
+						<div class="clearfix"></div>
+						<h3 class="link_exp uppercase">Marketing Services</h3>
+						<div class="clearfix"></div>
+						<p>As a One Stop Solutions agency, we also provide Marketing Services towards our clients that includes:</p>
+						<ul>
+							<li>Marketing Support: Fulfillment Management – Channel Relations Program – News Letter – Exhibition.</li>
+							<li>Event Management: Product Launch – Road Shows – Seminar.</li>
+						</ul>
+					</a>
+				</div>
+				<!-- block-3 -->
+				<div class="span4 flyIn">
+					<a class="exp_tt">
+						<img alt="Media Monitoring" class="face" src="{% static 'img/monitoring.jpg' %}">
+						<div class="clearfix"></div>
+						<h3 class="link_exp uppercase">Media Monitoring</h3>
+						<div class="clearfix"></div>
+						<p>As our main core business, we support all round Public Relations activities in media relations:
+							Press Releases – Interviews – Press Briefings – Press Conference – Tele Video Conference – Story Pitch – Media Visit – Technology Updates – Media Seeding/Review – Media Coaching – Media Tracking – Translation</p>
+						<ul>
+							<li>Monitoring for printing, online and electronic media.</li>
+							<li>Reporting, summarizing and analyzing media coverage.</li>
+							<li>Translation.</li>
+						</ul>
+						<p>The final monitoring report will be prepared accordingly to our clients inquiries and needs.</p>
+					</a>
+				</div>
+				<!-- block-4 -->
+				<div class="span4 flyIn">
+					<a class="exp_tt">
+						<img alt="Social Media" class="face" src="{% static 'img/social-media.jpg' %}">
+						<div class="clearfix"></div>
+						<h3 class="link_exp uppercase">Social Media</h3>
+						<div class="clearfix"></div>
+						<p>As the digital era is rapidly evolving before our eyes and in conjunction with our Public Relations program, we come with the latest service: Social Media.</p>
+						<p>Our dedicated and well-trained team will develop, manage, track and report our client’s social media activities on Facebook and Twitter, so the program will be executed with the right strategy and action.</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End team section -->
+
+	<!-- section: services -->
+	<section id="services" class="section">
+		<div class="container">
+			<!-- Heading -->
+			<div class="heading">
+				<h4 class="uppercase">Our Clients</h4>
+				<!-- <h5 class="uppercase">Our Creative Services</h5> -->
+			</div>
+			<!-- Service block -->
+			<div class="row">
+				<div class="span3 animated-fast flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-car"></i></div>
+							</div>
+						</div>
+						<h2><a href="#automotive" data-reveal-id="service01">Automotive</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-tv"></i></div>
+							</div>
+						</div>
+						<h2><a href="#tv-channel" data-reveal-id="service02">TV Channel</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-credit-card"></i></div>
+							</div>
+						</div>
+						<h2><a href="#banking" data-reveal-id="service03">Banking</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-fast flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-plane"></i></div>
+							</div>
+						</div>
+						<h2><a href="#airlines" data-reveal-id="service04">Airlines</a></h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-lightbulb"></i></div>
+							</div>
+						</div>
+						<h2><a href="#home-appliances" data-reveal-id="service05">Home Appliances</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-stethoscope"></i></div>
+							</div>
+						</div>
+						<h2><a href="#healthcare" data-reveal-id="service06">Healthcare</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-wrench"></i></div>
+							</div>
+						</div>
+						<h2><a href="#households" data-reveal-id="service07">Households</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fa fa-sitemap"></i></div>
+							</div>
+						</div>
+						<h2><a href="#networking" data-reveal-id="service08">Networking</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fab fa-android"></i></div>
+							</div>
+						</div>
+						<h2><a href="#it-product" data-reveal-id="service09">IT Product</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-home"></i></div>
+							</div>
+						</div>
+						<h2><a href="#property" data-reveal-id="service10">Property</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-medkit"></i></div>
+							</div>
+						</div>
+						<h2><a href="#pharmaceutical" data-reveal-id="service11">Pharmaceutical</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-wifi"></i></div>
+							</div>
+						</div>
+						<h2><a href="#telco-product" data-reveal-id="service12">Telco Product</a></h2>
+					</div>
+				</div>
+				<div class="span3 animated-slow flyIn">
+					<div class="service-box">
+						<div class="iconface clearfix">
+							<div class="num">
+								<div class="bg-numero roda"></div>
+								<div class="numero n20"><i class="fas fa-recycle"></i></div>
+							</div>
+						</div>
+						<h2><a href="#consumer-products" data-reveal-id="service13">Consumer Products</a></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Process block -->
+		<!-- <div class="container">
+			<div class="heading">
+				<h1 class="uppercase">Our <strong>Process</strong></h1>
+				<h5>Our process is our product</h5>	
+			</div>
+		</div>
+		<div id="process clearfix">
+			<ul class="processLead-list clearfix">
+				<li><a href="#" class="bg-discovery"><span><i class="fa fa-tint"></i> Discovery &amp; Research</span></a></li>
+				<li><a href="#" class="bg-planning"><span><i class="fa fa-lightbulb-o"></i> Plan &amp; Strategize</span></a></li>
+				<li><a href="#" class="bg-design"><span><i class="fa fa-bell-o"></i> Design &amp; Prototype</span></a></li>
+				<li><a href="#" class="bg-develop"><span><i class="fa fa-files-o"></i> Develop &amp; Implement</span></a></li>
+				<li><a href="#" class="bg-launch"><span><i class="fa fa-location-arrow"></i> Launch &amp; Grow</span></a></li>
+			</ul>
+		</div> -->
+		<!-- End Process block -->
+	</section>
+	<!-- End services section-->
+
+	<!-- Work section -->
+	<section id="works" class="section">
+		<!-- Heading -->
+		<div class="container">
+			<div class="heading">
+				<h4 class="uppercase">Events</h4>
+			</div>
+		</div>
+		<div class="clearfix">
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio clearfix">
+					<a href="portfolio-item1.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio1.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Portfolio gallery <span>photography</span></h5>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a  href="portfolio-item2.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio2.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">								
+							<h5 class="headingborder">image slider <span>Web design</span></h5>								
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item3.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio3.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Portfolio name <span>Designing</span></h5>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item4.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio4.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Project video <span>photography</span></h5>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item1.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio5.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Portfolio gallery <span>web development</span></h5>					
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item2.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio6.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Project slider <span>web design</span></h5>				
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item3.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio4.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Project name <span>web design</span></h5>				
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+			<!-- portfolio item -->
+			<div class="portfolio-item">
+				<div class="portfolio">
+					<a href="portfolio-item4.html" class="portfolio-image">
+					<img src="{% static 'img/portfolio5.jpg' %}" alt="" />
+					<div class="portfolio-overlay">
+						<div class="thumb-info">
+							<h5 class="headingborder">Project video <span>photography</span></h5>											
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<!-- end portfolio item -->
+		</div>
+		<div class="clearfix"></div>
+		<div id="clients"></div>
+		<div class="clearfix"></div>
+	</section>
+	<!-- Work section -->
+
+	<!-- section: contact -->
+	<section id="contact" class="section">
+		<div class="container">
+			<!-- heading -->
+			<div class="heading">
+				<h4 class="uppercase">Contact us</h4>
+				<h5 class="uppercase">Get in Touch</h5>
+			</div>
+			<!-- end heading -->		
+			<div class="row">
+				<div class="span6">
+					<!-- contact form -->	
+					<div class="cform" id="contact-form">
+						<div id="sendmessage">
+							Your message has been sent. Thank you!
+						</div>					
+						<form action="email.php" method="POST" class="contactForm clearfix">
+							<div class="field your-name">
+								<input type="text" name="your-name" placeholder="Your Name" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field your-email">
+								<input type="text" name="your-email" placeholder="Your Email" class="cform-text" size="40" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field subject">
+								<input type="text" name="subject" placeholder="Subject" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field message">
+								<textarea name="message" class="cform-textarea" cols="40" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+								<div class="validation">
+								</div>
+							</div>
+							<input type="submit" value="Send message" class="btn btn-theme pull-left">
+						</form>					
+					</div>
+					<!-- end contact form -->	
+				</div>
+				<div class="span6">
+					<div class="sidecontact">
+						<i class="fas fa-map-marker-alt"></i>
+						<h1>PT. Agrakom Para Relatika </br>
+							GKM Green Tower, 15th Floor, </br>
+							Jl. TB Simatupang Kav. 89G, <br/>
+							Jakarta Selatan 12520, </br>
+							Indonesia</h1>
+					</div>
+					<div class="sidecontact">
+						<i class="fas fa-phone"></i> 
+						<h1>Tel. 6221-22785011, </br>Fax. 6221-22785014</h1>					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="overlay overlay-genie" data-steps="m 701.56545,809.01175 35.16718,0 0,19.68384 -35.16718,0 z;m 698.9986,728.03569 41.23353,0 -3.41953,77.8735 -34.98557,0 z;m 687.08153,513.78234 53.1506,0 C 738.0505,683.9161 737.86917,503.34193 737.27015,806 l -35.90067,0 c -7.82727,-276.34892 -2.06916,-72.79261 -14.28795,-292.21766 z;m 403.87105,257.94772 566.31246,2.93091 C 923.38284,513.78233 738.73561,372.23931 737.27015,806 l -35.90067,0 C 701.32034,404.49318 455.17312,480.07689 403.87105,257.94772 z;M 51.871052,165.94772 1362.1835,168.87863 C 1171.3828,653.78233 738.73561,372.23931 737.27015,806 l -35.90067,0 C 701.32034,404.49318 31.173122,513.78234 51.871052,165.94772 z;m 52,26 1364,4 c -12.8007,666.9037 -273.2644,483.78234 -322.7299,776 l -633.90062,0 C 359.32034,432.49318 -6.6979288,733.83462 52,26 z;m 0,0 1439.999975,0 0,805.99999 -1439.999975,0 z">
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 806" preserveAspectRatio="none">
+				<path class="overlay-path" d="m 701.56545,809.01175 35.16718,0 0,19.68384 -35.16718,0 z"/>
+			</svg>
+			<button type="button" class="overlay-close">Close</button>
+			<nav>
+				<!-- Map -->
+				<div id="map" class="google-map" data-position-latitude="23.220610500000000000 " data-position-longitude="72.657986499999990000" data-marker-img="{% static 'img/07-marker.png' %}' %}" data-marker-width="64" data-marker-height="58"></div>
+			</nav>
+		</div>
+	</section>
+	{% endblock %}

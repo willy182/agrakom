@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!-- Metas
+	================================================== -->
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<meta name="keywords" content="Agrakompr, Agrakom PR, PT Agrakom PR, Public Relation, Agra" />
+	<meta name="description" content="We provide Public Relations and Marketing Services support to IT, Telco, Technology industries as well as health and consumer products." />
+	<meta name="author" content="agrakom" />
+
+	<!-- Page Title
+	================================================== -->
+	<title>AgrakomPR</title>
+
+	<!-- Favicon
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+
+	<!-- Google fonts
+	==================================================-->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'/>
+
+	<!-- bootstreap Library
+	================================================== -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-responsive.css' %}"/>
+
+	<!-- icon css - font-awesome
+	================================================== -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+	<!-- bootstreap Library
+	================================================== -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
+	<!-- supersized slider CSS -->
+		<link href="{% static 'css/supersized.css' %}" rel="stylesheet">
+	<!-- CSS
+	================================================== -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/map-overlay.css' %}" />
+
+	<!-- skin color
+	================================================== -->
+	<link rel="stylesheet" type="text/css" id="color" href="{% static 'css/colors/color3.css' %}">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script src="{% static 'js/modernizr.custom.js' %}"></script>
+</head>
+<body>
+	<!-- pre loder -->
+	<div id="preloader">
+			<div id="status"></div><!-- /status -->
+	</div>
+	<!-- End Preloader -->
+	<!--Navigation-->
+	<div id="homepage"></div>
+	<!-- Full screen slider note: slider image path located in initialization script -->
+	<!--Time Bar-->
+	<div id="progress-back" class="load-item">
+			<div id="progress-bar"></div>
+	</div>
+	<!-- end of Full screen slider -->
+	<!--include menu-->
+    {% include "frontend/layout/menu.html" %}
+	<!--End Navigation-->

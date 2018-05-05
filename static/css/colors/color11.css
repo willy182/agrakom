@@ -1,0 +1,41 @@
+/*::-moz-selection {
+background:#e06d5e;
+}
+::selection {
+background:#e06d5e;
+}*/
+.selected{border-bottom:5px solid #95a57c}
+ul#menu-main > li > a:hover{border-bottom: 5px solid #95a57c;color: #95a57c;}
+strong{color:#95a57c;}
+#header-wrapper .scroll_btn:hover {background: url("../../img/05-scroll.gif") no-repeat scroll 50% 50% #95a57c;}
+.iconface .n2 {background: url("../../img/06-icon-bg11.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);}
+.iconface .n20{color:#95a57c;}
+.ch-info-wrap ,.ch-info > div{background:#95a57c;}
+.ch-item:hover .ch-info-wrap { box-shadow:0 0 0 20px #95a57c, 0 0 3px rgba(115, 114, 23, 0.8) inset;-moz-box-shadow:0 0 0 20px #95a57c, 0 0 3px rgba(115, 114, 23, 0.8) inset;webkit-box-shadow: 0 0 0 20px #95a57c, 0 0 3px rgba(115, 114, 23, 0.8) inset;}
+.skillbar-bar{background:#95a57c;}
+#services .iconface .bg-numero {
+	background:#95a57c;
+	background-image: -ms-linear-gradient(-90deg, #95a57c 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #95a57c 75%, #95a57c);
+	background-image: -moz-linear-gradient(-90deg, #95a57c 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #95a57c 75%, #95a57c);
+	background-image: -webkit-linear-gradient(-90deg, #95a57c 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #95a57c 75%, #95a57c);
+    background-image: -o-linear-gradient(-90deg, #95a57c 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #95a57c 75%, #95a57c);
+	background-image: linear-gradient(-90deg, #95a57c 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #95a57c 75%, #95a57c);
+}
+section#services .span3:hover {background:#95a57c;}
+.reveal-modal-bg {background:rgba(149,165,124,.8);}
+.processLead-list li a i{color:#95a57c;}
+#pricing .price-plan .most-popular {background:#95a57c;}
+#pricing .price-plan .info ul li .free {background: #95a57c;}
+#filters ul li a:hover,#filters ul li a:focus {	border-bottom:5px solid #95a57c;}
+#filters ul li a:hover , #filters ul li a.active {color:#95a57c;border-bottom:5px solid #95a57c;}
+.portfolio-overlay .thumb-info i {color: #95a57c;}
+#blogpage a:hover,#portfoliopage a:hover{color:#95a57c;}
+.blogtag a {border:1px solid #95a57c;}
+#tweet a{color:#95a57c;}
+#contact{background:#95a57c;}
+#contact-form input[type=submit] {color: #95a57c;}
+.sidecontact i{color:#95a57c;}
+i.icon-circled {background:#95a57c;}
+
+
+

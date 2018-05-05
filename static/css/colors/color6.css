@@ -1,0 +1,41 @@
+/*::-moz-selection {
+background:#e06d5e;
+}
+::selection {
+background:#e06d5e;
+}*/
+.selected{border-bottom:5px solid #E8A03B}
+ul#menu-main > li > a:hover{border-bottom: 5px solid #E8A03B;color: #E8A03B;}
+strong{color:#E8A03B;}
+#header-wrapper .scroll_btn:hover {background: url("../../img/05-scroll.gif") no-repeat scroll 50% 50% #E8A03B;}
+.iconface .n2 {background: url("../../img/06-icon-bg6.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);}
+.iconface .n20{color:#E8A03B;}
+.ch-info-wrap ,.ch-info > div{background:#E8A03B;}
+.ch-item:hover .ch-info-wrap { box-shadow:0 0 0 20px #E8A03B, 0 0 3px rgba(115, 114, 23, 0.8) inset;-moz-box-shadow:0 0 0 20px #E8A03B, 0 0 3px rgba(115, 114, 23, 0.8) inset;webkit-box-shadow: 0 0 0 20px #E8A03B, 0 0 3px rgba(115, 114, 23, 0.8) inset;}
+.skillbar-bar{background:#E8A03B;}
+#services .iconface .bg-numero {
+	background:#E8A03B;
+	background-image: -ms-linear-gradient(-90deg, #E8A03B 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #E8A03B 75%, #E8A03B);
+	background-image: -moz-linear-gradient(-90deg, #E8A03B 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #E8A03B 75%, #E8A03B);
+	background-image: -webkit-linear-gradient(-90deg, #E8A03B 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #E8A03B 75%, #E8A03B);
+    background-image: -o-linear-gradient(-90deg, #E8A03B 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #E8A03B 75%, #E8A03B);
+	background-image: linear-gradient(-90deg, #E8A03B 25%, #dfdfdf 25%, #dfdfdf 50%, #dfdfdf 50%, #dfdfdf 75%, #E8A03B 75%, #E8A03B);
+}
+section#services .span3:hover {background:#E8A03B;}
+.reveal-modal-bg {background:rgba(232,160,59,.8);}
+.processLead-list li a i{color:#E8A03B;}
+#pricing .price-plan .most-popular {background:#E8A03B;}
+#pricing .price-plan .info ul li .free {background: #E8A03B;}
+#filters ul li a:hover,#filters ul li a:focus {	border-bottom:5px solid #E8A03B;}
+#filters ul li a:hover , #filters ul li a.active {color:#E8A03B;border-bottom:5px solid #E8A03B;}
+.portfolio-overlay .thumb-info i {color: #E8A03B;}
+#blogpage a:hover,#portfoliopage a:hover{color:#E8A03B;}
+.blogtag a {border:1px solid #E8A03B;}
+#tweet a{color:#E8A03B;}
+#contact{background:#E8A03B;}
+#contact-form input[type=submit] {color: #E8A03B;}
+.sidecontact i{color:#E8A03B;}
+i.icon-circled {background:#E8A03B;}
+
+
+
