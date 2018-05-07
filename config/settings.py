@@ -52,9 +52,7 @@ EXTERNAL_APPS = [
     'modules.cms.aboutus',
     'modules.cms.dashboard',
     'modules.cms.awards',
-    'modules.cms.contactus',
     'modules.cms.ourclients',
-    'modules.cms.ourcontact',
     'modules.cms.ourservices',
     'modules.frontend',
 ]
