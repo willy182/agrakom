@@ -9,7 +9,7 @@ class EventGalery(models.Model):
 
     title = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
-    image = models.FileField(blank=True, null=True, upload_to='images/galery')
+    image = models.FileField(blank=True, null=True, upload_to='static/images/galery')
     status = models.BooleanField(blank=True)
     position =  models.IntegerField(blank=True, null=True)
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING,db_column='created_by', related_name='%(class)s_created_by')
@@ -23,7 +23,7 @@ class DetailEvent(models.Model):
         db_table = 'detail_event'
 
     event_galery = models.ForeignKey(EventGalery,on_delete=models.DO_NOTHING)
-    image = models.FileField(blank=True, null=True, upload_to='images/detail_galery')
+    image = models.FileField(blank=True, null=True, upload_to='static/images/detail_galery')
     caption =  models.CharField(max_length=225,blank=True, null=True)
     status = models.BooleanField(blank=True)
     position =  models.IntegerField(blank=True, null=True)
