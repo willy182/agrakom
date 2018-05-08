@@ -15,6 +15,9 @@ class AboutUs(models.Model):
     modified_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING, db_column='modified_by', related_name='%(class)s_modified_by')
     modified_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)
 
+    def __str__(self):
+        return '%s' % (self.title)
+
 
 class SliderAboutUs(models.Model):
     class Meta:
@@ -22,7 +25,7 @@ class SliderAboutUs(models.Model):
 
     about_us = models.ForeignKey(AboutUs,on_delete=models.DO_NOTHING)
     position = models.IntegerField(blank=True, null=True)
-    image = models.FileField(blank=True, null=True, upload_to='images/slider')
+    image = models.FileField(blank=True, null=True, upload_to='static/images/slider')
     caption = models.CharField(max_length=225, blank=True, null=True)
     status = models.BooleanField(blank=True)
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING,db_column='created_by', related_name='%(class)s_created_by')
