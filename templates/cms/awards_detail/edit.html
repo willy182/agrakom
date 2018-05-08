@@ -1,0 +1,103 @@
+{% extends 'cms/layout/base.html' %}
+
+{% block content %}
+
+<!-- Full Width Column -->
+<div class="content-wrapper">
+    <div class="container">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Detail Galery
+                <small>edit detail galery</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Detail Galery</a></li>
+                <li class="active">Edit Detail Galery</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header ">
+                            <!-- <h3 class="box-title">Product Form</h3> -->
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/awards/detail/edit/" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="{{id}}">
+
+                            {% csrf_token %}
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Galery</label>
+                                    <div class="col-sm-9">
+                                        {{form.awards_galery}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.awards_galery|linebreaks }}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Images</label>
+                                    <div class="col-sm-9">
+                                        {{form.image}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.images|linebreaks }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Caption</label>
+                                    <div class="col-sm-9">
+                                        {{form.caption}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.caption|linebreaks }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Position</label>
+                                    <div class="col-sm-9">
+                                        {{form.position}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.position|linebreaks }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Status</label>
+                                    {% for radio in form.status %}
+                                    <label>
+                                        <ul>
+                                            {{ radio.tag }} {{ radio.choice_label }}
+                                        </ul>
+                                    </label>
+                                    {% endfor %}
+                                    <span class="help-block"></span>
+                                    <span style="color:red">{{ form.errors.status }}</span>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <a href="/cms-agrakom/awards/detail/" class="btn btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock %}

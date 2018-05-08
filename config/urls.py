@@ -20,7 +20,9 @@ from modules.frontend.views import HomeAgrakom
 
 urlpatterns = [
     url(r'^$', HomeAgrakom.as_view(), name='home'),
-    url(r'^cms-agrakom', include('modules.cms.dashboard.urls')),
-    url(r'^cms-agrakom/about-us', include('modules.cms.aboutus.urls')),
+    url(r'^cms-agrakom/', include('modules.cms.dashboard.urls')),
+    url(r'^cms-agrakom/about-us/', include('modules.cms.aboutus.urls')),
+    url(r'^cms-agrakom/awards/', include('modules.cms.awards.urls')),
+
 
 ]

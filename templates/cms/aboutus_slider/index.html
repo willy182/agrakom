@@ -10,13 +10,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                About Us
-                <small>List About Us</small>
+                Slider
+                <small>List Slider</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="#">About Us</a></li>
-                <li class="active">List About Us</li>
+                <li class="active">Slider</li>
             </ol>
         </section>
 
@@ -30,18 +30,19 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <p class="pull-right" style="margin-left:10px;">
-                                <a href="/cms-agrakom/about-us/add/" class="btn btn-block btn-primary">
+                                <a href="/cms-agrakom/about-us/slider/add/" class="btn btn-block btn-primary">
                                     <i class="fa fa-user-plus"></i> Create New
                                 </a>
                             </p>
 
-
-                            <table id="aboutus" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <table id="slider" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                 <tr role="row">
                                     <th>No</th>
-                                    <th>Title</th>
-                                    <th>Descriptions</th>
+                                    <th>Images</th>
+                                    <th>Caption</th>
+                                    <th>Slider Of</th>
+                                    <th>Postion</th>
                                     <th>Created Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -68,7 +69,7 @@
 
 <script type="text/javascript">
         $(document).ready(function(){
-          var Table = $('#aboutus').DataTable({
+          var Table = $('#slider').DataTable({
             autoWidth: true,
             processing: true,
             serverSide: true,
@@ -84,7 +85,7 @@
             pageLength: 20,
             pagingType: "full_numbers",
             ajax: {
-              url: "/cms-agrakom/about-us/get-list/",
+              url: "/cms-agrakom/about-us/slider/get-list/",
               data: function ( d ) {
                return $.extend( {}, d, {
                  "filter_by": $('#filter_by').val(),
@@ -125,6 +126,7 @@
           <!--'autoWidth'   : false-->
         <!--})-->
     <!--})-->
+
 
 </script>
 {% endblock %}
