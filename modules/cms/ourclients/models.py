@@ -9,7 +9,7 @@ class Ourclient(models.Model):
 
     name = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
-    image = models.FileField(blank=True, null=True, upload_to='images/client')
+    image = models.FileField(blank=True, null=True, upload_to='static/images/client')
     caption = models.CharField(max_length=225, blank=True, null=True)
     position = models.IntegerField(blank=True, null=True)
     status = models.BooleanField(blank=True)
