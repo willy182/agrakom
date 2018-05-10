@@ -30,7 +30,7 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <p class="pull-right" style="margin-left:10px;">
-                                <a href="/cms-agrakom/awards/detail/add/" class="btn btn-block btn-primary">
+                                <a href="/cms-agrakom/event/detail/add/" class="btn btn-block btn-primary">
                                     <i class="fa fa-user-plus"></i> Create New
                                 </a>
                             </p>
@@ -85,7 +85,7 @@
             pageLength: 20,
             pagingType: "full_numbers",
             ajax: {
-              url: "/cms-agrakom/awards/detail/get-list/",
+              url: "/cms-agrakom/event/detail/get-list/",
               data: function ( d ) {
                return $.extend( {}, d, {
                  "filter_by": $('#filter_by').val(),

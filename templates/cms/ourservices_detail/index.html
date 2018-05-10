@@ -10,13 +10,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Detail Galery
-                <small>List Detail Galery</small>
+                Detail Our Services
+                <small>List Detail Our Services</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Detail Galery</a></li>
-                <li class="active">List Detail Galery</li>
+                <li><a href="#">Detail Our Services</a></li>
+                <li class="active">List Detail Our Services</li>
             </ol>
         </section>
 
@@ -30,7 +30,7 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <p class="pull-right" style="margin-left:10px;">
-                                <a href="/cms-agrakom/awards/detail/add/" class="btn btn-block btn-primary">
+                                <a href="/cms-agrakom/ourservices/detail/add/" class="btn btn-block btn-primary">
                                     <i class="fa fa-user-plus"></i> Create New
                                 </a>
                             </p>
@@ -42,7 +42,7 @@
                                     <th>Images</th>
                                     <th>Caption</th>
                                     <th>Detail Of</th>
-                                    <th>Postion</th>
+
                                     <th>Created Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -85,7 +85,7 @@
             pageLength: 20,
             pagingType: "full_numbers",
             ajax: {
-              url: "/cms-agrakom/awards/detail/get-list/",
+              url: "/cms-agrakom/ourservices/detail/get-list/",
               data: function ( d ) {
                return $.extend( {}, d, {
                  "filter_by": $('#filter_by').val(),

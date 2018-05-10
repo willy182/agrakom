@@ -1,8 +1,9 @@
-from django.forms import ModelForm, ModelChoiceField, Select, FileInput, FileField, CharField, TextInput, Textarea, ChoiceField, RadioSelect, IntegerField, forms
-from modules.cms.aboutus.models import AboutUs, SliderAboutUs
 from django.core.files.images import get_image_dimensions
+from django.forms import ModelForm, ModelChoiceField, Select, FileInput, FileField, CharField, TextInput, Textarea, ChoiceField, RadioSelect, IntegerField, forms
+from modules.cms.ourservices.models import OurServices, OurServiceDetail
 
-class CreateAboutusForm(ModelForm):
+
+class CreateServiceForm(ModelForm):
     statuschoice = (
         (True, 'Active'),
         (False, 'Not Active'),
@@ -26,25 +27,20 @@ class CreateAboutusForm(ModelForm):
     )
 
     class Meta:
-        model = AboutUs
+        model = OurServices
         fields = ('title', 'description', 'status')
 
 
-class CreateSliderAboutUsForm(ModelForm):
+class CreateServiceDetailForm(ModelForm):
     statuschoice = (
         (True, 'Active'),
         (False, 'Not Active'),
     )
 
-    about_us = ModelChoiceField(initial='Select About Us', required=True, queryset=AboutUs.objects.filter().order_by('id'),
-                                widget=Select(attrs={'class': 'form-control ', }))
+    our_services = ModelChoiceField(initial='Select Our Services', required=True, queryset=OurServices.objects.filter().order_by('id'),
+                                    widget=Select(attrs={'class': 'form-control ', }))
 
-    position = IntegerField(
-        error_messages={'placeholder': "input position"},
-        widget=TextInput(attrs={'class': "form-control", 'placeholder': "input position"}),
-    )
-
-    image = FileField(widget=FileInput(attrs={'class': 'form-control','id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'},)
+    image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True)
 
     caption = CharField(
         max_length=225,
@@ -60,14 +56,18 @@ class CreateSliderAboutUsForm(ModelForm):
     )
 
     class Meta:
-        model = SliderAboutUs
-        fields = ('about_us', 'position', 'image', 'caption', 'status')
+        model = OurServiceDetail
+        fields = ('our_services', 'image', 'caption', 'status')
         field = "image"  # Field name
-        MinW = 960  # Min. Width
+        MinW = 280  # Min. Width
+        MaxW = 280  # Max. Width
         checkH = False  # If it's going to validate the height
-        MinH = 800  # Min. Height
+        MinH = 280  # Min. Height
+        MaxH = 280  # Max. Height
         text_minw = u"The image width is lower than %i" % MinW  # Error text for min. width
+        text_maxw = u"The image width is larger than %i" % MaxW  # Error text for max. width
         text_minh = u"The image height is lower than %i" % MinH  # Error text for min. height
+        text_maxh = u"The image height is larger than %i" % MaxH  # Error text for max. height
 
         # clean_(name of field)
 
@@ -79,7 +79,11 @@ class CreateSliderAboutUsForm(ModelForm):
             w, h = get_image_dimensions(image)
             if w < self.Meta.MinW:
                 raise forms.ValidationError(self.Meta.text_minw)
+            if w > self.Meta.MaxW:
+                raise forms.ValidationError(self.Meta.text_maxw)
             if h < self.Meta.MinH and self.Meta.checkH == True:
                 raise forms.ValidationError(self.Meta.text_minw)
+            if h > self.Meta.MaxH and self.Meta.checkH == True:
+                raise forms.ValidationError(self.Meta.text_maxw)
 
         return image

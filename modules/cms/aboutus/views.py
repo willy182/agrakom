@@ -180,7 +180,7 @@ class CreateAboutusSlider(TemplateView):
             action.save()
             return HttpResponseRedirect('/cms-agrakom/about-us/slider/')
         else:
-            form = CreateAboutusForm(data=request.POST)
+            form = CreateSliderAboutUsForm(request.POST, request.FILES)
             return render(request, 'cms/aboutus_slider/add.html', {'form': form})
 
 
@@ -193,6 +193,9 @@ class EditAboutusSlider(TemplateView):
     def get(self, request, *args, **kwargs):
         id = request.GET.get('id')
         form = CreateSliderAboutUsForm(instance=SliderAboutUs.objects.get(id=int(id)))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
         about_us = SliderAboutUs.objects.get(id=int(id))
         return render(request, 'cms/aboutus_slider/edit.html', {'form': form, 'id': id, 'about_us': about_us})
 
@@ -200,8 +203,10 @@ class EditAboutusSlider(TemplateView):
     def post(self, request, *args, **kwargs):
 
         id = request.POST.get('id')
-        form = CreateSliderAboutUsForm(request.POST,request.FILES, instance=AboutUs.objects.get(id=int(id)))
-
+        form = CreateSliderAboutUsForm(data=request.POST, files=request.FILES, instance=SliderAboutUs.objects.get(id=int(id)))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
         if form.is_valid():
             action = form.save(commit=False)
             # action.created_by = request.user
@@ -210,6 +215,7 @@ class EditAboutusSlider(TemplateView):
         else:
 
             return render(request, 'cms/aboutus_slider/edit.html', {'form': form, 'id': id})
+
 
 class GetListAboutUsSlider(BaseDatatableView):
     order_columns = ['id', 'imags', 'caption', 'title', 'about_us__title', 'position', 'created_date', 'status', 'id']
@@ -261,10 +267,9 @@ class GetListAboutUsSlider(BaseDatatableView):
                 else:
                     position = '-'
 
-
                 json_data.append([
                     NumberingCounter,
-                    '<img style="height:25px;width:25px;text-align:center" src="/'+item.image.url+'" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
+                    '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     caption,
                     item.about_us.title,
                     position,
