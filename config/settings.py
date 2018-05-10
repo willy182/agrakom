@@ -51,6 +51,7 @@ DEBUG = True
 EXTERNAL_APPS = [
     'modules.cms.aboutus',
     'modules.cms.dashboard',
+    'modules.cms.event',
     'modules.cms.awards',
     'modules.cms.ourclients',
     'modules.cms.ourservices',

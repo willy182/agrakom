@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^cms-agrakom/', include('modules.cms.dashboard.urls')),
     url(r'^cms-agrakom/about-us/', include('modules.cms.aboutus.urls')),
     url(r'^cms-agrakom/awards/', include('modules.cms.awards.urls')),
-
+    url(r'^cms-agrakom/event/', include('modules.cms.event.urls')),
+    url(r'^cms-agrakom/ourservices/', include('modules.cms.ourservices.urls')),
+    url(r'^cms-agrakom/ourclients/', include('modules.cms.ourclients.urls')),
 
 ]

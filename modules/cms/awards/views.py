@@ -13,7 +13,7 @@ class AwardsList(TemplateView):
         return super(AwardsList, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        all_awards = AwardsGalery.objects.all().order_by("id")
+        all_awards = AwardsGalery.objects.filter().order_by("id")
 
         cust_context = {
             'all_awards': all_awards,
@@ -44,7 +44,7 @@ class CreateAwards(TemplateView):
                 action.save()
                 return HttpResponseRedirect('/cms-agrakom/awards/')
             else:
-                form = CreateAwardsForm(data=request.POST)
+                form = CreateAwardsForm(request.POST, request.FILES)
                 return render(request, 'cms/awards/add.html', {'form': form})
 
 
@@ -57,14 +57,20 @@ class EditAwards(TemplateView):
     def get(self, request, *args, **kwargs):
         id = request.GET.get('id')
         form = CreateAwardsForm(instance=AwardsGalery.objects.get(id=int(id)))
-        about_us = AwardsGalery.objects.get(id=int(id))
-        return render(request, 'cms/awards/edit.html', {'form': form, 'id': id, 'about_us': about_us})
+        awards_galery = AwardsGalery.objects.get(id=int(id))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
+        return render(request, 'cms/awards/edit.html', {'form': form, 'id': id, 'about_us': awards_galery})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
 
         id = request.POST.get('id')
-        form = CreateAwardsForm(data=request.POST, instance=AwardsGalery.objects.get(id=int(id)))
+        form = CreateAwardsForm(data=request.POST, files=request.FILES, instance=AwardsGalery.objects.get(id=int(id)))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
 
         if form.is_valid():
             action = form.save(commit=False)
@@ -188,6 +194,9 @@ class EditDetailGalery(TemplateView):
     def get(self, request, *args, **kwargs):
         id = request.GET.get('id')
         form = CreateAwardDetailForm(instance=DetailGalery.objects.get(id=int(id)))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
         about_us = DetailGalery.objects.get(id=int(id))
         return render(request, 'cms/awards_detail/edit.html', {'form': form, 'id': id, 'about_us': about_us})
 
@@ -195,13 +204,16 @@ class EditDetailGalery(TemplateView):
     def post(self, request, *args, **kwargs):
 
         id = request.POST.get('id')
-        form = CreateAwardDetailForm(request.POST,request.FILES, instance=DetailGalery.objects.get(id=int(id)))
+        form = CreateAwardDetailForm(data=request.POST, files=request.FILES, instance=DetailGalery.objects.get(id=int(id)))
+        for k, v in form.base_fields.items():
+            if k == 'image':
+                v.required = False
 
         if form.is_valid():
             action = form.save(commit=False)
             # action.created_by = request.user
             action.save()
-            return HttpResponseRedirect('/cms-agrakom/about-us/')
+            return HttpResponseRedirect('/cms-agrakom/awards/detail/')
         else:
 
             return render(request, 'cms/awards_detail/edit.html', {'form': form, 'id': id})

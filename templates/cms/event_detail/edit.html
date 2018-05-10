@@ -8,13 +8,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Awards
-                <small>add cover galery</small>
+                Detail Galery
+                <small>edit detail galery</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Awards Cover Galery</a></li>
-                <li class="active">Add Cover Galery</li>
+                <li><a href="#">Detail Galery</a></li>
+                <li class="active">Edit Detail Galery</li>
             </ol>
         </section>
 
@@ -28,44 +28,46 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/awards/add/" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/event/detail/edit/" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="{{id}}">
+
                             {% csrf_token %}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Title</label>
+                                    <label class="col-sm-2 control-label">Galery</label>
                                     <div class="col-sm-9">
-                                        {{form.title}}
+                                        {{form.event_galery}}
                                         <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.title|linebreaks }}</span>
+                                        <span style="color:red">{{ form.errors.event_galery|linebreaks }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Descriptions</label>
-                                    <div class="col-sm-9">
-                                        {{form.description}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.description|linebreaks }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Image</label>
+                                    <label class="col-sm-2 control-label">Images</label>
                                     <div class="col-sm-9">
                                         {{form.image}}
                                         <span class="help-block"></span>
                                         {% if form.errors.image %}
-                                        {% for err_image in form.errors.image %}
-                                        <span style="color:red">{{ err_image|linebreaks }}</span>
-                                        {% endfor %}
+                                            {% for err_image in form.errors.image %}
+                                                <span style="color:red">{{ err_image|linebreaks }}</span>
+                                            {% endfor %}
                                         {% endif %}
                                     </div>
-
-                                    <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
-                                        <img id="prev_image" style="width:640px;height:350px;" src="/static/images/NoImageAvailable.jpg" alt="your image"/>
-                                        <div><span style="color:red;font-weight:bold"> *) resolution : 640 x 350 Pixel</span></div>
+                                     <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
+                                        <img id="prev_image" style="width:640px;height:350px;" src="{% if form.instance.image %}/{{ form.instance.image.url }}{%else%}/static/images/NoImageAvailable.jpg{% endif %}"
+                                             onerror="this.src='/static/images/NoImageAvailable.jpg';" alt="your image"/>
+                                        <div><span style="color:red;font-weight:bold"> *) Min resolution : 600 x 400 Pixel</span></div>
                                     </div>
-
-
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Caption</label>
+                                    <div class="col-sm-9">
+                                        {{form.caption}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.caption|linebreaks }}</span>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Position</label>
                                     <div class="col-sm-9">
@@ -91,7 +93,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <a href="/cms-agrakom/awards/" class="btn btn-default">Cancel</a>
+                                <a href="/cms-agrakom/event/detail/" class="btn btn-default">Cancel</a>
                                 <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
                             </div>
                             <!-- /.box-footer -->

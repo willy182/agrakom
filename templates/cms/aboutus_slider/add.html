@@ -30,7 +30,7 @@
                         <!-- form start -->
                         <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/about-us/slider/add/" enctype="multipart/form-data">
 
-                        {% csrf_token %}
+                            {% csrf_token %}
                             <div class="box-body">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">About Us</label>
@@ -45,8 +45,17 @@
                                     <div class="col-sm-9">
                                         {{form.image}}
                                         <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.images|linebreaks }}</span>
+                                        {% if form.errors.image %}
+                                        {% for err_image in form.errors.image %}
+                                        <span style="color:red">{{ err_image|linebreaks }}</span>
+                                        {% endfor %}
+                                        {% endif %}
                                     </div>
+                                    <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
+                                        <img id="prev_image" style="width:640px;height:350px;" src="/static/images/NoImageAvailable.jpg" alt="your image"/>
+                                        <div><span style="color:red;font-weight:bold"> *) Min resolution : 920 x 800 Pixel</span></div>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">

@@ -17,6 +17,9 @@ class EventGalery(models.Model):
     modified_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING, db_column='modified_by', related_name='%(class)s_modified_by')
     modified_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)
 
+    def __str__(self):
+        return '%s' % (self.title)
+
 
 class DetailEvent(models.Model):
     class Meta:
