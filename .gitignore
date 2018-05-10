@@ -1,4 +1,6 @@
-.*
+# folder environment
+env/*
+
 *.pyc
-.idea
 .env
+.idea/
