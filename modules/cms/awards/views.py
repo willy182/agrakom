@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from modules.cms.awards.forms import CreateAwardsForm, CreateAwardDetailForm
@@ -8,7 +10,7 @@ from modules.cms.awards.models import AwardsGalery, DetailGalery
 
 
 class AwardsList(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(AwardsList, self).dispatch(request, *args, **kwargs)
 
@@ -22,7 +24,7 @@ class AwardsList(TemplateView):
 
 
 class CreateAwards(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(CreateAwards, self).dispatch(request, *args, **kwargs)
 
@@ -49,7 +51,7 @@ class CreateAwards(TemplateView):
 
 
 class EditAwards(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(EditAwards, self).dispatch(request, *args, **kwargs)
 
@@ -150,7 +152,7 @@ class GetListAwards(BaseDatatableView):
 
 
 class AwardsdetailList(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(AwardsdetailList, self).dispatch(request, *args, **kwargs)
 
@@ -164,7 +166,7 @@ class AwardsdetailList(TemplateView):
 
 
 class CreateDetailGalery(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(CreateDetailGalery, self).dispatch(request, *args, **kwargs)
 
@@ -186,7 +188,7 @@ class CreateDetailGalery(TemplateView):
 
 
 class EditDetailGalery(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(EditDetailGalery, self).dispatch(request, *args, **kwargs)
 

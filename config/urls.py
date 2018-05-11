@@ -26,5 +26,8 @@ urlpatterns = [
     url(r'^cms-agrakom/event/', include('modules.cms.event.urls')),
     url(r'^cms-agrakom/ourservices/', include('modules.cms.ourservices.urls')),
     url(r'^cms-agrakom/ourclients/', include('modules.cms.ourclients.urls')),
+    url(r'^cms-agrakom/user/', include('modules.cms.user.urls')),
+    url(r'^cms-agrakom/role/', include('modules.cms.role.urls')),
+    url(r'^cms-agrakom/auth/', include('modules.cms.auth.urls')),
 
 ]

@@ -1,0 +1,88 @@
+{% extends 'cms/layout/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Full Width Column -->
+<div class="content-wrapper">
+    <div class="container">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Role
+                <small>set role</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Role</a></li>
+                <li class="active">Set Rolee</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header ">
+                            <!-- <h3 class="box-title">Product Form</h3> -->
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" role="form" id="form_permission" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{id}}">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="name" value="{{user.username}}" readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Permission</label>
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control select2" id="select_permission" name="group">
+                                            <option value="" disabled selected>-- select permission --</option>
+                                            {% for group in groups %}
+
+                                            {% if user.groups.all.0.id == group.id  %}
+
+                                                <option value={{ group.id }} selected>{{ group.name }}</option>
+                                            {% else %}
+                                                <option value={{ group.id }}>{{ group.name }}</option>
+                                            {% endif%}
+
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+
+
+                            <div class="clearfix"></div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <a href="/cms-agrakom/user/" class="btn btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.content-wrapper -->
+
+
+{% endblock %}
+

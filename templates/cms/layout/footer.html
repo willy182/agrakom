@@ -1,13 +1,13 @@
 {% load static %}
 <footer class="main-footer">
     <div class="container">
-      <div class="pull-right hidden-xs">
+        <div class="pull-right hidden-xs">
 
-      </div>
-      <strong>Copyright &copy; 2018 <a href="/cms-agrakom/dashboard">Agrakom</a></strong>
+        </div>
+        <strong>Copyright &copy; 2018 <a href="/cms-agrakom/dashboard">Agrakom</a></strong>
     </div>
     <!-- /.container -->
-  </footer>
+</footer>
 </div>
 <!-- ./wrapper -->
 
@@ -19,12 +19,12 @@
 <script src="{% static 'cms/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'cms/js/dataTables.bootstrap.min.js' %}"></script>
 
- SlimScroll
 <script src="{% static 'cms/js/jquery.slimscroll.min.js' %}"></script>
- FastClick
 <script src="{% static 'cms/js/fastclick.js' %}"></script>
- AdminLTE App
 <script src="{% static 'cms/js/adminlte.min.js' %}"></script>
+
+<script src="{% static 'cms/js/jquery.validation.min.js' %}"></script>
+<script src="{% static 'cms/js/additional-methods.min.js' %}"></script>
 
 
 <script>
@@ -44,6 +44,148 @@
 
     $("#img_input").change(function() {
       readURL(this);
+    });
+
+    $(function(){
+        var table = $("#table_permission");
+        var table_body = $("#table_permission tbody");
+        var default_tr = '<tr id="default_tr"><td colspan="4" class="text-center">No data</td></tr>';
+        var selected_value = {% if perms %} {{ perms|safe }} {% else %} [] {% endif %};
+        <!--var selected_value = {% if perms %} [] {% else %} [] {% endif %};-->
+
+
+        var submitButtonChecker = function() {
+            // check and set submit button
+
+            if (selected_value.length > 0) {
+                $("#submitButton").prop('disabled', false);
+            } else {
+                $("#submitButton").prop('disabled', true);
+            }
+
+        }
+
+        // check selected_value on load
+        if(selected_value.length > 0) {
+            $("#default_tr").remove();
+            for(var x=0; x < selected_value.length; x++) {
+                var selected = $("#select_permission option[value="+ selected_value[x] +"]");
+                var value = selected.val();
+                var module_name = selected.data("module");
+                var permission = selected.text();
+                var tr = table_body.children('tr');
+                var counter = tr.length;
+
+                // remove default tr
+                if (counter == 1 && tr[0].id == 'default_tr') {
+                    $("#default_tr").remove();
+                    counter = 0;
+                }
+
+                // add permission to table
+                var item = "<tr data-id='" + value + "'><td>" + permission + "</td><td>" + module_name
+                    + "</td><td class='text-center'><a class='btn btn-danger btn-xs removeItemPermission'><i class='fa fa-remove'></i></a></td></tr>";
+
+                table_body.append(item);
+
+                submitButtonChecker();
+            }
+        }
+
+        // handle permission select
+        $("#select_permission").change(function(){
+            var selected = $(this).find(":selected");
+            var value = selected.val();
+            var module_name = selected.data("module");
+            var permission = selected.text();
+            var tr = table_body.children('tr');
+            var counter = tr.length;
+
+            // remove default tr
+            if (counter == 1 && tr[0].id == 'default_tr') {
+                $("#default_tr").remove();
+                counter = 0;
+            }
+
+            if($.inArray(value, selected_value) == -1) {
+                // add permission to table
+                var item = "<tr data-id='"+ value +"'><td>" + permission + "</td><td>" + module_name
+                        + "</td><td class='text-center'><a class='btn btn-danger btn-xs removeItemPermission'><i class='fa fa-remove'></i></a></td></tr>";
+
+                table_body.append(item);
+
+                // add to selected_value
+                selected_value.push(value);
+            }
+            submitButtonChecker();
+
+        });
+
+        // handle remove button
+        $(document).on("click", ".removeItemPermission", function (e) {
+            var closest_tr = $(this).closest('tr');
+            var closest_tr_id = String(closest_tr.data('id'));
+
+            // remove value from selected_value variable
+            var idx = selected_value.indexOf(closest_tr_id);
+            if(idx != -1){
+                selected_value.splice(idx, 1);
+            }
+
+            // remove tr from dom
+            closest_tr.remove();
+
+            var tr = table_body.children('tr');
+            var counter = tr.length;
+            // remove default tr
+            if (counter == 0) {
+                table_body.append(default_tr);
+            }
+
+            submitButtonChecker();
+        });
+
+        // setup jquery validation with bootstrap3 / adminlte form
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+        $("#form_permission").validate({
+            submitHandler: function (form) {
+
+                for(var x=0; x < selected_value.length; x++){
+                    $('<input>').attr({
+                        type: 'hidden',
+                        id: 'selected_permission',
+                        name: 'permissions',
+                        value: selected_value[x]
+                    }).appendTo(form);
+                }
+
+                form.submit();
+            },
+            errorClass:'help-block',
+            rules: {
+                role_name: {
+                    required: true,
+                    maxlength: 100
+                }
+            }
+        });
     });
 
 </script>
