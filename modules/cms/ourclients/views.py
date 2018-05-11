@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from modules.cms.ourclients.forms import CreateOurClientsForm
@@ -8,7 +10,7 @@ from modules.cms.ourclients.models import Ourclient
 
 
 class List(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(List, self).dispatch(request, *args, **kwargs)
 
@@ -22,7 +24,7 @@ class List(TemplateView):
 
 
 class Create(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(Create, self).dispatch(request, *args, **kwargs)
 
@@ -49,7 +51,7 @@ class Create(TemplateView):
 
 
 class Edit(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(Edit, self).dispatch(request, *args, **kwargs)
 

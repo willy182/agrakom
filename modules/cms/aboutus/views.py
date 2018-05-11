@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from modules.cms.aboutus.forms import CreateAboutusForm, CreateSliderAboutUsForm
@@ -8,7 +10,7 @@ from modules.cms.aboutus.models import AboutUs, SliderAboutUs
 
 
 class AboutUsList(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(AboutUsList, self).dispatch(request, *args, **kwargs)
 
@@ -22,7 +24,7 @@ class AboutUsList(TemplateView):
 
 
 class CreateAboutus(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(CreateAboutus, self).dispatch(request, *args, **kwargs)
 
@@ -49,7 +51,7 @@ class CreateAboutus(TemplateView):
 
 
 class EditAboutus(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(EditAboutus, self).dispatch(request, *args, **kwargs)
 
@@ -149,7 +151,7 @@ class GetListAboutUs(BaseDatatableView):
 
 
 class AboutUsSliderList(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(AboutUsSliderList, self).dispatch(request, *args, **kwargs)
 
@@ -163,7 +165,7 @@ class AboutUsSliderList(TemplateView):
 
 
 class CreateAboutusSlider(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(CreateAboutusSlider, self).dispatch(request, *args, **kwargs)
 
@@ -185,7 +187,7 @@ class CreateAboutusSlider(TemplateView):
 
 
 class EditAboutusSlider(TemplateView):
-    # @method_decorator(login_required(login_url='/login/'))
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
     def dispatch(self, request, *args, **kwargs):
         return super(EditAboutusSlider, self).dispatch(request, *args, **kwargs)
 

@@ -1,112 +1,546 @@
-{% extends 'cms/layout/base.html' %}
+{% extends 'layout/base.html' %}
 
 {% block content %}
+{% load static %}
 
-<!-- Full Width Column -->
-<div class="content-wrapper">
-    <div class="container">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Our Clients
-                <small>add our clients</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Our Clients</a></li>
-                <li class="active">Add Our Clients</li>
-            </ol>
-        </section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Role
+        <small>{{ content.title }}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{% url 'user:list-group' %}">Roles</a></li>
+        <li class="active">{{ content.active_menu }}</li>
+    </ol>
+</section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-info">
-                        <div class="box-header ">
-                            <!-- <h3 class="box-title">Product Form</h3> -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- .box-body -->
+            <div class="box">
+                <form role="form" id="form_permission" method="post" action="{{ content.action_url }}">
+                {% csrf_token %}
+                <div class="box-body">
+
+                    {% if form.errors %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {% for field in form %} {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>
+                                    <i class="icon fa fa-ban"></i> Warning!</h4>
+                                {{ error|escape }}
+                            </div>
+                            {% endfor %} {% endfor %}
                         </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/ourclients/add/" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-9">
-                                        {{form.name}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.name|linebreaks }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Descriptions</label>
-                                    <div class="col-sm-9">
-                                        {{form.description}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.description|linebreaks }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Image</label>
-                                    <div class="col-sm-9">
-                                        {{form.image}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.image|linebreaks }}</span>
-                                    </div>
-                                    <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
-                                        <img id="prev_image" style="width:270px;height:206px;" src="/static/images/NoImageAvailable.jpg" alt="your image"/>
-                                        <div><span style="color:red;font-weight:bold"> *) Min Resolution : 270 x 206 Pixel</span></div>
-                                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    {% endif %}
 
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Caption</label>
-                                    <div class="col-sm-9">
-                                        {{form.caption}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.caption|linebreaks }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Position</label>
-                                    <div class="col-sm-9">
-                                        {{form.position}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.position|linebreaks }}</span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Status</label>
-                                    {% for radio in form.status %}
-                                    <label>
-                                        <ul>
-                                            {{ radio.tag }} {{ radio.choice_label }}
-                                        </ul>
-                                    </label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group {{ form.name.errors|yesno:'has-error,' }}">
+                                <label for="{{ form.name.id_for_label }}">Role Name</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                <label for="">Search and enter permission to add</label>
+                                <select class="form-control select2" id="select_permission" name="select_permission">
+                                    <option value="" disabled selected>-- select permission --</option>
+                                    {% for permission in form.permissions.field.queryset %}
+                                    <option value={{ permission.id }} data-module={{ permission.content_type.app_label }}>{{ permission.name }}</option>
                                     {% endfor %}
-                                    <span class="help-block"></span>
-                                    <span style="color:red">{{ form.errors.status }}</span>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped table-bordered" id="table_permission">
+                                <thead>
+                                    <tr>
+                                        <th>Permission</th>
+                                        <th>Module</th>
+                                        <th style="width: 40px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="default_tr">
+                                        <td colspan="3" class="text-center">No data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                          <div class="box box-solid">
+                                <div class="box-header with-border">
+                                      <h4 class="box-title">Physical Location & Location Type Ownership</h4>
+                                </div>
+                                <!-- /.box-header -->
+                              <div class="box-body">
+                                  <div class="row">
+                                    <div class="col-md-5">
+                                      <div class="form-group">
+                                        <label>Physical Location</label>
+                                        <select class="form-control" name="physical_location" id="physical_location" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                          <option selected="selected" value="">Select Physical Location</option>
+                                            <option value="all_physical_location">All Physical Location</option>
+                                            {% for list_physical in content.physical_location %}
+                                                <option value="{{list_physical.id}}">{{list_physical.name}}</option>
+                                            {% endfor%}
+                                        </select>
+                                      </div>
+                                      <!-- /.form-group -->
+
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-5">
+                                      <div class="form-group">
+                                        <label>Location Type</label>
+                                        <select class="form-control" name="location_type" id="location_type"  style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected">Select Location Type</option>
+                                        </select>
+                                      </div>
+
+                                      <!-- /.form-group -->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button id="addButton" style="margin-top: 24px;width: 115px;" type="button" class="btn btn-primary " >Add</button>
+                                        </div>
+                                      <!-- /.form-group -->
+                                    </div>
+                                    <!-- /.col -->
+                                  </div>
+                                  <!-- /.row -->
                                 </div>
 
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <a href="/cms-agrakom/ourclients/" class="btn btn-default">Cancel</a>
-                                <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
-                            </div>
-                            <!-- /.box-footer -->
-                        </form>
+
+
+                                <!-- /.box-body -->
+                          </div>
+                          <!-- /.box -->
+                        </div>
+                   </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-xs-11">
+                            <table class="table table-striped table-bordered" id="table_location">
+                                <thead>
+                                    <tr>
+                                        <th>Physical Location</th>
+                                        <th>Location Type</th>
+                                        <th style="width: 40px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="location_tr">
+                                {% for position in content.role_pesition %}
+                                <tr>
+                                    <td><input type="hidden" name="position" value="{{position.physical_location.id}}|{{position.location_type.id}}">{{position.physical_location.name}}</td>
+                                    <td>{{position.location_type.name}}</td>
+                                    <td class="text-center"><a class="btn btn-danger btn-xs" ><i class="fa fa-remove removePosition" id="{{position.physical_location.id}}-{{position.location_type.id}}"></i></a></td>
+                                </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <a href="{% url 'user:list-group' %}" class="btn btn-default cancelButtonConfirm">Cancel</a>
+                        <button id="submitButton" type="submit" class="btn btn-primary submitButtonConfirm" disabled>Save</button>
                     </div>
                 </div>
-            </div>
-            <!-- /.box -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.content-wrapper -->
 
+                </form>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+</section>
+<!-- /.content -->
 {% endblock %}
+
+{% block jsfile %}
+<script src="{% static 'js/jquery.validation.min.js' %}"></script>
+<script src="{% static 'js/additional-methods.min.js' %}"></script>
+{% endblock jsfile %}
+
+{% block jsscript %}
+<script>
+    $(function(){
+        var table = $("#table_permission");
+        var table_body = $("#table_permission tbody");
+        var default_tr = '<tr id="default_tr"><td colspan="4" class="text-center">No data</td></tr>';
+        var selected_value = {% if perms %} {{ perms|safe }} {% else %} [] {% endif %};
+
+        {% if content.role_pesition %}
+            var tempRolePosition = {};
+            {% for position in content.role_pesition %}
+                var value = {
+                             'physical_location_id'   : {{position.physical_location.id}},
+                             'physical_location_name' : '{{position.physical_location.name}}',
+                             'location_type_id'       : {{position.location_type.id}},
+                             'location_type_name'     : '{{position.location_type.name}}',
+                            };
+
+                var key = {{position.physical_location.id}}+'-'+{{position.location_type.id}};
+                if (tempRolePosition[key] != key) {
+                    tempRolePosition[key] = value;
+                }
+            {% endfor %}
+        {% else %}
+            var tempRolePosition = {};
+        {% endif %}
+
+        var submitButtonChecker = function() {
+            // check and set submit button
+            var check_perm = Object.keys(tempRolePosition).length;
+
+            if (selected_value.length > 0 && check_perm > 0) {
+                $("#submitButton").prop('disabled', false);
+            } else {
+                $("#submitButton").prop('disabled', true);
+            }
+
+        }
+
+        // check selected_value on load
+        if(selected_value.length > 0) {
+            $("#default_tr").remove();
+            for(var x=0; x < selected_value.length; x++) {
+                var selected = $("#select_permission option[value="+ selected_value[x] +"]");
+                var value = selected.val();
+                var module_name = selected.data("module");
+                var permission = selected.text();
+                var tr = table_body.children('tr');
+                var counter = tr.length;
+
+                // remove default tr
+                if (counter == 1 && tr[0].id == 'default_tr') {
+                    $("#default_tr").remove();
+                    counter = 0;
+                }
+
+                // add permission to table
+                var item = "<tr data-id='" + value + "'><td>" + permission + "</td><td>" + module_name
+                    + "</td><td class='text-center'><a class='btn btn-danger btn-xs removeItemPermission'><i class='fa fa-remove'></i></a></td></tr>";
+
+                table_body.append(item);
+
+                submitButtonChecker();
+            }
+        }
+
+
+        // handle physical location select
+        $("#physical_location").change(function(){
+            var selected = $(this).find(":selected");
+            var value = selected.val();
+            loc_type = '<option value="all_location_type">All Location type</option>';
+
+            // LOADING
+            loading();
+
+            $.ajax({
+                    type: "GET",
+                    url: '/user/group/get-location-type/',
+                    data: {
+                        "physical_location_id"  : value,
+                    },
+                    cache: false,
+                    dataType: "json",
+                    success: function(data) {
+
+                        if(data.status) {
+                            get_loc_type = data.data
+                            $.each(get_loc_type, function(i, a) {
+                                loc_type += '<option value="' + a.location_type_id + '">' + a.location_type__name + '</option>';
+                            });
+                            $('#location_type').html(loc_type);
+
+                        } else {
+                            alert(data.data)
+                        }
+                        unloading();
+                    }
+
+            });
+
+        });
+
+        // handle permission select
+        $("#select_permission").change(function(){
+            var selected = $(this).find(":selected");
+            var value = selected.val();
+            var module_name = selected.data("module");
+            var permission = selected.text();
+            var tr = table_body.children('tr');
+            var counter = tr.length;
+
+            // remove default tr
+            if (counter == 1 && tr[0].id == 'default_tr') {
+                $("#default_tr").remove();
+                counter = 0;
+            }
+
+            if($.inArray(value, selected_value) == -1) {
+                // add permission to table
+                var item = "<tr data-id='"+ value +"'><td>" + permission + "</td><td>" + module_name
+                        + "</td><td class='text-center'><a class='btn btn-danger btn-xs removeItemPermission'><i class='fa fa-remove'></i></a></td></tr>";
+
+                table_body.append(item);
+
+                // add to selected_value
+                selected_value.push(value);
+            }
+            submitButtonChecker();
+
+        });
+
+
+        // handle add location type & physical location
+         $("#addButton").on("click", function() {
+
+            tr_position = "";
+            var physical_location_id = $("#physical_location option:selected").val();
+            var physical_location_name = $("#physical_location option:selected").text();
+            var location_type_id     = $("#location_type option:selected").val();
+            var location_type_name    = $("#location_type option:selected").text();
+
+            if (physical_location_name !="Select Physical Location" && location_type_name != "Select Location Type"){
+                if (physical_location_name == "All Physical Location" && location_type_name == "All Location type") {
+                    // LOADING
+                    loading();
+                    $.ajax({
+                        type: "GET",
+                        url: '/user/group/get-physical-location/',
+                        data: {
+                            "physical_location_id" : physical_location_id,
+                            "location_type_id" : location_type_id,
+                        },
+                        cache: false,
+                        dataType: "json",
+                        success: function(data) {
+
+                            if(data.status) {
+                                get_physical_loc = data.data
+
+                                $.each(get_physical_loc, function(pl_key,pl_value) {
+                                    $.each(pl_value.location_type, function(lt_key,lt_value) {
+
+                                        var value = {
+                                         'physical_location_id'   : pl_value.physical_location.id,
+                                         'physical_location_name' : pl_value.physical_location.name,
+                                         'location_type_id'       : lt_value.location_type_id,
+                                         'location_type_name'     : lt_value.location_type__name,
+                                         };
+
+                                        var key = pl_value.physical_location.id+'-'+lt_value.location_type_id;
+
+                                        if (tempRolePosition[key] != key) {
+                                            tempRolePosition[key] = value;
+                                        }
+
+                                    });
+                                });
+
+
+                            } else {
+                                alert(data.data)
+                            }
+
+                            unloading();
+                            $.each(tempRolePosition, function(k, v) {
+                                tr_position += '<tr><td><input type="hidden" name="position" value="'+v.physical_location_id+'|'+v.location_type_id+'">'+v.physical_location_name+'</td><td>'+v.location_type_name+'</td><td class="text-center"><a class="btn btn-danger btn-xs" ><i class="fa fa-remove removePosition" id="'+k+'"></i></a></td></tr>';
+                            });
+
+                            $('#location_tr').html(tr_position);
+                            submitButtonChecker();
+                        }
+
+
+                    });
+
+
+                } else if(physical_location_name != "All Physical Location" && location_type_name == "All Location type" ){
+
+                    loading();
+                    $.ajax({
+                        type: "GET",
+                        url: '/user/group/get-physical-location/',
+                        data: {
+                            "physical_location_id" : physical_location_id,
+                            "location_type_id" : location_type_id,
+                        },
+                        cache: false,
+                        dataType: "json",
+                        success: function(data) {
+
+                            if(data.status) {
+                                get_physical_loc = data.data
+
+                                $.each(get_physical_loc, function(pl_key,pl_value) {
+                                    $.each(pl_value.location_type, function(lt_key,lt_value) {
+
+                                        var value = {
+                                         'physical_location_id'   : pl_value.physical_location.id,
+                                         'physical_location_name' : pl_value.physical_location.name,
+                                         'location_type_id'       : lt_value.location_type_id,
+                                         'location_type_name'     : lt_value.location_type__name,
+                                         };
+
+                                        var key = pl_value.physical_location.id+'-'+lt_value.location_type_id;
+
+                                        if (tempRolePosition[key] != key) {
+                                            tempRolePosition[key] = value;
+                                        }
+
+                                    });
+                                });
+
+
+                            } else {
+                                alert(data.data)
+                            }
+                            unloading();
+                            $.each(tempRolePosition, function(k, v) {
+                                tr_position += '<tr><td><input type="hidden" name="position" value="'+v.physical_location_id+'|'+v.location_type_id+'">'+v.physical_location_name+'</td><td>'+v.location_type_name+'</td><td class="text-center"><a class="btn btn-danger btn-xs" ><i class="fa fa-remove removePosition" id="'+k+'"></i></a></td></tr>';
+                            });
+
+                            $('#location_tr').html(tr_position);
+                            submitButtonChecker();
+                        }
+
+                    });
+
+                } else {
+                    var value = {
+                                 'physical_location_id'   : physical_location_id,
+                                 'physical_location_name' : physical_location_name,
+                                 'location_type_id'       : location_type_id,
+                                 'location_type_name'     : location_type_name,
+                                 };
+
+                    var key = physical_location_id+'-'+location_type_id;
+
+                    if (tempRolePosition[key] != key) {
+                        tempRolePosition[key] = value;
+                    }
+
+                    $.each(tempRolePosition, function(k, v) {
+                        tr_position += '<tr><td><input type="hidden" name="position" value="'+v.physical_location_id+'|'+v.location_type_id+'">'+v.physical_location_name+'</td><td>'+v.location_type_name+'</td><td class="text-center"><a class="btn btn-danger btn-xs" ><i class="fa fa-remove removePosition" id="'+k+'"></i></a></td></tr>';
+                    });
+
+                    $('#location_tr').html(tr_position);
+                    submitButtonChecker();
+                }
+
+            }
+
+         });
+
+        // handle remove button
+        $(document).on("click", ".removePosition", function (e) {
+            var closest_tr = $(this).closest('tr');
+            var key = $(this).attr('id');
+
+            // update rolePosition
+            delete tempRolePosition[key];
+
+            // remove tr from dom
+            closest_tr.remove();
+
+            submitButtonChecker();
+
+        });
+
+        // handle remove button
+        $(document).on("click", ".removeItemPermission", function (e) {
+            var closest_tr = $(this).closest('tr');
+            var closest_tr_id = String(closest_tr.data('id'));
+
+            // remove value from selected_value variable
+            var idx = selected_value.indexOf(closest_tr_id);
+            if(idx != -1){
+                selected_value.splice(idx, 1);
+            }
+
+            // remove tr from dom
+            closest_tr.remove();
+
+            var tr = table_body.children('tr');
+            var counter = tr.length;
+            // remove default tr
+            if (counter == 0) {
+                table_body.append(default_tr);
+            }
+
+            submitButtonChecker();
+        });
+
+        // setup jquery validation with bootstrap3 / adminlte form
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+        $("#form_permission").validate({
+            submitHandler: function (form) {
+
+                for(var x=0; x < selected_value.length; x++){
+                    $('<input>').attr({
+                        type: 'hidden',
+                        id: 'selected_permission',
+                        name: 'permissions',
+                        value: selected_value[x]
+                    }).appendTo(form);
+                }
+
+                form.submit();
+            },
+            errorClass:'help-block',
+            rules: {
+                role_name: {
+                    required: true,
+                    maxlength: 100
+                }
+            }
+        });
+    });
+</script>
+{% endblock jsscript %}

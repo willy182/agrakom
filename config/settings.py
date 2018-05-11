@@ -55,6 +55,8 @@ EXTERNAL_APPS = [
     'modules.cms.awards',
     'modules.cms.ourclients',
     'modules.cms.ourservices',
+    'modules.cms.user',
+    'modules.cms.role',
     'modules.frontend',
 ]
 

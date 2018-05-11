@@ -37,11 +37,11 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> &nbsp; Master &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/admin/">Admin</a></li>
+                <li><a href="/cms-agrakom/user/">Admin</a></li>
                 <li class="divider"></li>
-                <li><a href="/role/">Role</a></li>
-                <li class="divider"></li>
-                <li><a href="/permission/">Permission</a></li>
+                <li><a href="/cms-agrakom/role/">Role</a></li>
+                <!--<li class="divider"></li>-->
+                <!--<li><a href="/cms-agrakom/permission/">Permission</a></li>-->
             </ul>
         </li>
     </ul>
@@ -60,7 +60,7 @@
                 <!-- The user image in the navbar-->
                 <img src="{% static 'cms/images/cms/user2-160x160.jpg' %}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">agrakom</span>
+                <span class="hidden-xs">{{request.user.username}}</span>
             </a>
             <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
@@ -68,15 +68,15 @@
                     <img src="{% static 'cms/images/cms/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
 
                     <p>
-                        Admin.Agrakom - Admin CMS
-                        <small>Last Login : 12/12/2018 10:11</small>
+                        {{request.user.username}} - {{request.user.group.0.name}}
+                        <small>Last Login : {{request.user.last_login}}</small>
                     </p>
                 </li>
 
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="pull-right">
-                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="/cms-agrakom/auth/logout/" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                 </li>
             </ul>
