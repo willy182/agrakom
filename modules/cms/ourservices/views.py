@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -30,7 +32,8 @@ class Create(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateServiceForm()
-        return render(request, 'cms/ourservices/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/ourservices/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateServiceForm(request.POST, request.FILES)
@@ -60,7 +63,8 @@ class Edit(TemplateView):
         id = request.GET.get('id')
         form = CreateServiceForm(instance=OurServices.objects.get(id=int(id)))
         our_services = OurServices.objects.get(id=int(id))
-        return render(request, 'cms/ourservices/edit.html', {'form': form, 'id': id, 'our_services': our_services})
+        perms = json.dumps([])
+        return render(request, 'cms/ourservices/edit.html', {'form': form, 'id': id, 'our_services': our_services, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
@@ -164,7 +168,8 @@ class CreateDetail(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateServiceDetailForm()
-        return render(request, 'cms/ourservices_detail/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/ourservices_detail/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateServiceDetailForm(request.POST, request.FILES)
@@ -192,7 +197,8 @@ class EditDetail(TemplateView):
         for k, v in form.base_fields.items():
             if k == 'image':
                 v.required = False
-        return render(request, 'cms/ourservices_detail/edit.html', {'form': form, 'id': id, 'service_detail': service_detail})
+        perms = json.dumps([])
+        return render(request, 'cms/ourservices_detail/edit.html', {'form': form, 'id': id, 'service_detail': service_detail, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):

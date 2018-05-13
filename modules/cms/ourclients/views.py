@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -30,7 +32,8 @@ class Create(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateOurClientsForm()
-        return render(request, 'cms/ourclients/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/ourclients/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateOurClientsForm(request.POST, request.FILES)
@@ -64,7 +67,8 @@ class Edit(TemplateView):
                 v.required = False
 
         our_clients = Ourclient.objects.get(id=int(id))
-        return render(request, 'cms/ourclients/edit.html', {'form': form, 'id': id, 'our_clients': our_clients})
+        perms = json.dumps([])
+        return render(request, 'cms/ourclients/edit.html', {'form': form, 'id': id, 'our_clients': our_clients, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):

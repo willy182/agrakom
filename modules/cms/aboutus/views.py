@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -171,7 +173,8 @@ class CreateAboutusSlider(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateSliderAboutUsForm()
-        return render(request, 'cms/aboutus_slider/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/aboutus_slider/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateSliderAboutUsForm(request.POST, request.FILES)
@@ -199,7 +202,8 @@ class EditAboutusSlider(TemplateView):
             if k == 'image':
                 v.required = False
         about_us = SliderAboutUs.objects.get(id=int(id))
-        return render(request, 'cms/aboutus_slider/edit.html', {'form': form, 'id': id, 'about_us': about_us})
+        perms = json.dumps([])
+        return render(request, 'cms/aboutus_slider/edit.html', {'form': form, 'id': id, 'about_us': about_us, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
