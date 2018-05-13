@@ -150,7 +150,7 @@ ul#menu-main > li > a:focus {
 /* === section header === */
 #header-wrapper {
 	width: 100%;
-	min-height: 800px;
+	/* min-height: 800px; */
 	padding-top:160px;
 	text-align:center;
 	position: relative;
@@ -1532,8 +1532,8 @@ display: block;
   transition: height 500ms ease-in-out 0s;
 }
 .owl-carousel .owl-item {float: left;position:relative;padding:10px 0;}
-.owl-prev:before {content: "\f177";}
-.owl-next:before {content: "\f178";}
+/* .owl-prev:before {content: "\f137";}
+.owl-next:before {content: "\f138";} */
 .owl-prev,.owl-next{font-family: FontAwesome;font-style: normal;font-weight: normal;line-height: 1;color: rgba(255, 255, 255, 0.2);display: inline-block;
     font-size: 28px; margin:20px;position: relative;text-align:center;cursor:pointer}
 .owl-prev:hover,.owl-next:hover{color:#fff;}
@@ -1586,12 +1586,17 @@ margin-bottom:20px;
 font-size:28px;
 margin:0 20px;
 }
-#projectslider .owl-prev:before {
+
+#projectslider {
+    margin-left: 30px;
+}
+
+/* #projectslider .owl-prev:before {
     content: "\f137";
 }
 #projectslider .owl-next:before {
     content: "\f138";
-}
+} */
 #projectslider .owl-prev, #projectslider .owl-next{color:#dfdfdf;margin:0 10px}
 #projectslider .owl-buttons{text-align:center;}
 #blog{

@@ -184,7 +184,7 @@ jQuery(document).ready(function($) {
 		navigation : true,
 		pagination : false,
 		autoHeight : true,
-		navigationText : ["",""],
+		navigationText : ["<i class='fas fa-chevron-circle-left'></i>","<i class='fas fa-chevron-circle-right'></i>"],
 		items : 1, //10 items above 1000px browser width
 		itemsDesktop : [1000,1], //5 items between 1000px and 901px
 		itemsDesktopSmall : [900,1], // betweem 900px and 601px
