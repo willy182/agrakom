@@ -99,4 +99,26 @@ class CreateEventDetailForm(ModelForm):
     class Meta:
         model = DetailEvent
         fields = ('event_galery', 'position', 'image', 'caption', 'status')
+        field = "image"  # Field name
+        MinW = 920  # Min. Width
+        checkH = False  # If it's going to validate the height
+        MinH = 615  # Min. Height
+        text_minw = u"The image width is lower than %i" % MinW  # Error text for min. width
+        text_minh = u"The image height is lower than %i" % MinH  # Error text for min. height
+
+        # clean_(name of field)
+
+    def clean_image(self):
+        image = self.cleaned_data.get(self.Meta.field)
+        if not image:
+            raise forms.ValidationError(u"No image")
+        else:
+            w, h = get_image_dimensions(image)
+            if w < self.Meta.MinW:
+                raise forms.ValidationError(self.Meta.text_minw)
+            if h < self.Meta.MinH and self.Meta.checkH == True:
+                raise forms.ValidationError(self.Meta.text_minw)
+
+
+        return image
 

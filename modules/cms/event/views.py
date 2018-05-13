@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -30,7 +32,8 @@ class Create(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateEventForm()
-        return render(request, 'cms/event/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/event/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateEventForm(request.POST, request.FILES)
@@ -64,7 +67,8 @@ class Edit(TemplateView):
                 v.required = False
 
         event_galery = EventGalery.objects.get(id=int(id))
-        return render(request, 'cms/event/edit.html', {'form': form, 'id': id, 'event_galery': event_galery})
+        perms = json.dumps([])
+        return render(request, 'cms/event/edit.html', {'form': form, 'id': id, 'event_galery': event_galery, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
@@ -173,7 +177,8 @@ class CreateDetail(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateEventDetailForm()
-        return render(request, 'cms/event_detail/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/event_detail/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateEventDetailForm(request.POST, request.FILES)
@@ -198,7 +203,8 @@ class EditDetail(TemplateView):
         id = request.GET.get('id')
         form = CreateEventDetailForm(instance=DetailEvent.objects.get(id=int(id)))
         event_detail = DetailEvent.objects.get(id=int(id))
-        return render(request, 'cms/event_detail/edit.html', {'form': form, 'id': id, 'event_detail': event_detail})
+        perms = json.dumps([])
+        return render(request, 'cms/event_detail/edit.html', {'form': form, 'id': id, 'event_detail': event_detail, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):

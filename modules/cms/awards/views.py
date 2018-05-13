@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -30,7 +32,8 @@ class CreateAwards(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateAwardsForm()
-        return render(request, 'cms/awards/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/awards/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateAwardsForm(request.POST, request.FILES)
@@ -63,7 +66,8 @@ class EditAwards(TemplateView):
         for k, v in form.base_fields.items():
             if k == 'image':
                 v.required = False
-        return render(request, 'cms/awards/edit.html', {'form': form, 'id': id, 'about_us': awards_galery})
+        perms = json.dumps([])
+        return render(request, 'cms/awards/edit.html', {'form': form, 'id': id, 'about_us': awards_galery, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
@@ -172,7 +176,8 @@ class CreateDetailGalery(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateAwardDetailForm()
-        return render(request, 'cms/awards_detail/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/awards_detail/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateAwardDetailForm(request.POST, request.FILES)
@@ -200,7 +205,8 @@ class EditDetailGalery(TemplateView):
             if k == 'image':
                 v.required = False
         about_us = DetailGalery.objects.get(id=int(id))
-        return render(request, 'cms/awards_detail/edit.html', {'form': form, 'id': id, 'about_us': about_us})
+        perms = json.dumps([])
+        return render(request, 'cms/awards_detail/edit.html', {'form': form, 'id': id, 'about_us': about_us, 'perms': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
