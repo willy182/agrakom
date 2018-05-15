@@ -148,9 +148,15 @@ ul#menu-main > li > a:focus {
 05. Page sections
 ============================================================ */
 /* === section header === */
+#header-wrapper-portfolio {
+	width: 100%;
+	padding-top:80px;
+	text-align:center;
+	position: relative;
+}
 #header-wrapper {
 	width: 100%;
-	/* min-height: 800px; */
+	min-height: 800px;
 	padding-top:160px;
 	text-align:center;
 	position: relative;
