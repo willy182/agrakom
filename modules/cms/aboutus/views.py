@@ -32,7 +32,8 @@ class CreateAboutus(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = CreateAboutusForm()
-        return render(request, 'cms/aboutus/add.html', {'form': form})
+        perms = json.dumps([])
+        return render(request, 'cms/aboutus/add.html', {'form': form, 'perms': perms})
 
     def post(self, request, *args, **kwargs):
         form = CreateAboutusForm(data=request.POST)
@@ -62,7 +63,8 @@ class EditAboutus(TemplateView):
         id = request.GET.get('id')
         form = CreateAboutusForm(instance=AboutUs.objects.get(id=int(id)))
         about_us = AboutUs.objects.get(id=int(id))
-        return render(request, 'cms/aboutus/edit.html', {'form': form, 'id': id, 'about_us': about_us})
+        perms = json.dumps([])
+        return render(request, 'cms/aboutus/edit.html', {'form': form, 'id': id, 'about_us': about_us, 'perm': perms})
 
     # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
     def post(self, request, *args, **kwargs):
