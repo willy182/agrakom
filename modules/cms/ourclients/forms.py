@@ -19,7 +19,7 @@ class CreateOurClientsForm(ModelForm):
         widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
     )
 
-    image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'})
+    image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'},)
 
     caption = CharField(
         max_length=225,
@@ -27,10 +27,10 @@ class CreateOurClientsForm(ModelForm):
         widget=TextInput(attrs={'class': "form-control", 'placeholder': "input caption"}),
     )
 
-    position = IntegerField(
-        error_messages={'placeholder': "input position"},
-        widget=TextInput(attrs={'class': "form-control", 'placeholder': "input position"}),
-    )
+    # position = IntegerField(
+    #     error_messages={'placeholder': "input position"},
+    #     widget=TextInput(attrs={'class': "form-control", 'placeholder': "input position"}),
+    # )
 
     status = ChoiceField(
         error_messages={'required': 'status can not be empty'},

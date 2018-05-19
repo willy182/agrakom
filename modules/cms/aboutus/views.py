@@ -226,7 +226,7 @@ class EditAboutusSlider(TemplateView):
 
 
 class GetListAboutUsSlider(BaseDatatableView):
-    order_columns = ['id', 'imags', 'caption', 'title', 'about_us__title', 'position', 'created_date', 'status', 'id']
+    order_columns = ['id', 'imags', 'caption', 'title', 'about_us__title', 'created_date', 'status', 'id']
 
     def get_initial_queryset(self):
         return SliderAboutUs.objects.filter().order_by('id')
@@ -270,17 +270,12 @@ class GetListAboutUsSlider(BaseDatatableView):
                 else:
                     caption = item.caption
 
-                if item.position:
-                    position = item.position
-                else:
-                    position = '-'
 
                 json_data.append([
                     NumberingCounter,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     caption,
                     item.about_us.title,
-                    position,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     status,
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/about-us/slider/edit/?id=' +

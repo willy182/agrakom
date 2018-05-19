@@ -57,6 +57,7 @@ EXTERNAL_APPS = [
     'modules.cms.ourservices',
     'modules.cms.user',
     'modules.cms.role',
+    'modules.cms.whatsnew',
     'modules.frontend',
 ]
 

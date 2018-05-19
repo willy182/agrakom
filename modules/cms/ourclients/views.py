@@ -90,7 +90,7 @@ class Edit(TemplateView):
 
 
 class GetList(BaseDatatableView):
-    order_columns = ['id', 'title', 'description', 'image', 'caption', 'position', 'status', 'created_date', 'id']
+    order_columns = ['id', 'title', 'description', 'image', 'caption', 'status', 'created_date', 'id']
 
     def get_initial_queryset(self):
         return Ourclient.objects.filter().order_by('id')
@@ -140,7 +140,6 @@ class GetList(BaseDatatableView):
                     description,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     item.caption,
-                    item.position,
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/ourclients/edit/?id=' +

@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^cms-agrakom/user/', include('modules.cms.user.urls')),
     url(r'^cms-agrakom/role/', include('modules.cms.role.urls')),
     url(r'^cms-agrakom/auth/', include('modules.cms.auth.urls')),
+    url(r'^cms-agrakom/whatsnew/', include('modules.cms.whatsnew.urls')),
 
 ]
