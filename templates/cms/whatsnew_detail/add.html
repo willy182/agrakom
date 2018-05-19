@@ -8,13 +8,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Slider
-                <small>add slider</small>
+                Detail Whatsnew
+                <small>add detail whatsnew</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li class="active">Add slider</li>
+                <li><a href="#">Detail Whatsnew</a></li>
+                <li class="active">Add Detail Whatsnew</li>
             </ol>
         </section>
 
@@ -28,16 +28,16 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/about-us/slider/add/" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/whatsnew/detail/add/" enctype="multipart/form-data">
 
                             {% csrf_token %}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">About Us</label>
+                                    <label class="col-sm-2 control-label">Galery</label>
                                     <div class="col-sm-9">
-                                        {{form.about_us}}
+                                        {{form.whatsnew}}
                                         <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.about_us|linebreaks }}</span>
+                                        <span style="color:red">{{ form.errors.whatsnew|linebreaks }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -52,10 +52,8 @@
                                         {% endif %}
                                     </div>
                                     <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
-                                        <img id="prev_image" style="width:640px;height:350px;" src="/static/images/NoImageAvailable.jpg" alt="your image"/>
-                                        <div><span style="color:red;font-weight:bold"> *) Min resolution : 920 x 800 Pixel</span></div>
+                                        <img id="prev_image" style="width:600px;height:400px;" src="/static/images/NoImageAvailable.jpg" alt="your image"/>
                                     </div>
-
                                 </div>
 
                                 <div class="form-group">
@@ -92,7 +90,7 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <a href="/cms-agrakom/about-us/slider/" class="btn btn-default">Cancel</a>
+                                <a href="/cms-agrakom/whatsnew/detail/" class="btn btn-default">Cancel</a>
                                 <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
                             </div>
                             <!-- /.box-footer -->

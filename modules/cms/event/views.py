@@ -90,7 +90,7 @@ class Edit(TemplateView):
 
 
 class GetList(BaseDatatableView):
-    order_columns = ['id', 'title', 'description', 'image', 'position', 'status', 'created_date', 'id']
+    order_columns = ['id', 'title', 'description', 'image', 'status', 'created_date', 'id']
 
     def get_initial_queryset(self):
         return EventGalery.objects.filter().order_by('id')
@@ -139,7 +139,6 @@ class GetList(BaseDatatableView):
                     item.title,
                     description,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
-                    item.position,
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/event/edit/?id=' +
@@ -226,7 +225,7 @@ class EditDetail(TemplateView):
 
 
 class GetListDetail(BaseDatatableView):
-    order_columns = ['id', 'imags', 'caption', 'title', 'about_us__title', 'position', 'created_date', 'status', 'id']
+    order_columns = ['id', 'imags', 'caption', 'title', 'about_us__title', 'created_date', 'status', 'id']
 
     def get_initial_queryset(self):
         return DetailEvent.objects.filter().order_by('id')
@@ -270,17 +269,12 @@ class GetListDetail(BaseDatatableView):
                 else:
                     caption = item.caption
 
-                if item.position:
-                    position = item.position
-                else:
-                    position = '-'
 
                 json_data.append([
                     NumberingCounter,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     caption,
                     item.event_galery.title,
-                    position,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     status,
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/event/detail/edit/?id=' +

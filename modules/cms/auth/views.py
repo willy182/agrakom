@@ -7,7 +7,6 @@ from django.contrib.auth.models import Group, Permission
 import json
 from django.contrib.auth import login, logout
 
-from modules.cms.role.forms import GroupForm
 
 class Login(TemplateView):
     def dispatch(self, request, *args, **kwargs):

@@ -40,7 +40,7 @@ class CreateServiceDetailForm(ModelForm):
     our_services = ModelChoiceField(initial='Select Our Services', required=True, queryset=OurServices.objects.filter().order_by('id'),
                                     widget=Select(attrs={'class': 'form-control ', }))
 
-    image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True)
+    image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'}, )
 
     caption = CharField(
         max_length=225,

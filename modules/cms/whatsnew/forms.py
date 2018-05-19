@@ -1,9 +1,9 @@
 # from django.core.files.images import get_image_dimensions
 from django.forms import ModelForm, ModelChoiceField, Select, FileInput, FileField, CharField, TextInput, Textarea, ChoiceField, RadioSelect, IntegerField, forms
-from modules.cms.event.models import EventGalery, DetailEvent
+from modules.cms.whatsnew.models import Whatsnew, DetailWhatsnew
 
 
-class CreateEventForm(ModelForm):
+class CreateWhatsnewForm(ModelForm):
     statuschoice = (
         (True, 'Active'),
         (False, 'Not Active'),
@@ -34,8 +34,8 @@ class CreateEventForm(ModelForm):
     )
 
     class Meta:
-        model = EventGalery
-        fields = ('title', 'description', 'image', 'position', 'status')
+        model = Whatsnew
+        fields = ('title', 'description', 'image', 'status')
     #     field = "image"  # Field name
     #     MinW = 600  # Min. Width
     #     MaxW = 600  # Max. Width
@@ -67,13 +67,13 @@ class CreateEventForm(ModelForm):
     #     return image
 
 
-class CreateEventDetailForm(ModelForm):
+class CreateWhatsnewDetailForm(ModelForm):
     statuschoice = (
         (True, 'Active'),
         (False, 'Not Active'),
     )
 
-    event_galery = ModelChoiceField(initial='Select Event Galery', required=True, queryset=EventGalery.objects.filter().order_by('id'),
+    whatsnew = ModelChoiceField(initial='Select', required=True, queryset=Whatsnew.objects.filter().order_by('id'),
                                     widget=Select(attrs={'class': 'form-control ', }))
 
     # position = IntegerField(
@@ -98,8 +98,8 @@ class CreateEventDetailForm(ModelForm):
     )
 
     class Meta:
-        model = DetailEvent
-        fields = ('event_galery', 'position', 'image', 'caption', 'status')
+        model = DetailWhatsnew
+        fields = ('whatsnew', 'image', 'caption', 'status')
     #     field = "image"  # Field name
     #     MinW = 920  # Min. Width
     #     checkH = False  # If it's going to validate the height

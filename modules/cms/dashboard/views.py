@@ -9,5 +9,4 @@ class Dashboard(TemplateView):
         return super(Dashboard, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-
         return render(request, 'cms/dashboard/index.html', context={})
