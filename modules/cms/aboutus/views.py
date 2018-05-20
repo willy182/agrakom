@@ -18,6 +18,9 @@ class AboutUsList(TemplateView):
 
     def get(self, request, *args, **kwargs):
         all_about_us = AboutUs.objects.all().order_by("id")
+        for a in request.user.get_all_permissions(obj=None) :
+            aa =a
+
 
         cust_context = {
             'all_about_us': all_about_us,
@@ -95,13 +98,13 @@ class GetListAboutUs(BaseDatatableView):
         if search:
             if filter_by == "title":
                 qs = qs.filter(Q(title__icontains=search))
-            elif filter_by == "description":
-                qs = qs.filter(Q(description__icontains=search))
+            # elif filter_by == "description":
+            #     qs = qs.filter(Q(description__icontains=search))
             elif filter_by == "status":
                 qs = qs.filter(Q(status__icontains=search))
             else:
                 qs = qs.filter(
-                    Q(title__icontains=search) | Q(description__icontains=search) | Q(status__icontains=search))
+                    Q(title__icontains=search) | Q(status__icontains=search))
 
         return qs
 
@@ -122,15 +125,15 @@ class GetListAboutUs(BaseDatatableView):
                              '<span class="label label-danger">Not Active</span>' \
                              '</p>' \
                              '</td>'
-                if len(item.description) > 25:
-                    description = item.description[0:25] + ' ...'
-                else:
-                    description = item.description
+                # if len(item.description) > 25:
+                #     description = item.description[0:25] + ' ...'
+                # else:
+                #     description = item.description
 
                 json_data.append([
                     NumberingCounter,
                     item.title,
-                    description,
+                    # description,
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/about-us/edit/?id=' +

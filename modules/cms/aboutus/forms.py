@@ -13,10 +13,10 @@ class CreateAboutusForm(ModelForm):
         error_messages={'required': 'Title can not be empty', 'placeholder': "input title"},
         widget=TextInput(attrs={'class': "form-control", 'placeholder': "input title"}),
     )
-    description = CharField(
-        required=False,
-        widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
-    )
+    # description = CharField(
+    #     required=False,
+    #     widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
+    # )
 
     status = ChoiceField(
         error_messages={'required': 'status can not be empty'},
@@ -27,7 +27,7 @@ class CreateAboutusForm(ModelForm):
 
     class Meta:
         model = AboutUs
-        fields = ('title', 'description', 'status')
+        fields = ('title', 'status')
 
 
 class CreateSliderAboutUsForm(ModelForm):
