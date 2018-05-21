@@ -48,18 +48,22 @@
 	<script src="{% static 'js/modernizr.custom.js' %}"></script>
 </head>
 <body>
+{% if 'detail-' not in request.path %}
 	<!-- pre loder -->
 	<div id="preloader">
 			<div id="status"></div><!-- /status -->
 	</div>
 	<!-- End Preloader -->
+{% endif %}
 	<!--Navigation-->
 	<div id="homepage"></div>
 	<!-- Full screen slider note: slider image path located in initialization script -->
+{% if 'detail-event' not in request.path %}
 	<!--Time Bar-->
 	<div id="progress-back" class="load-item">
-			<div id="progress-bar"></div>
+		<div id="progress-bar"></div>
 	</div>
+{% endif %}
 	<!-- end of Full screen slider -->
 	<!--include menu-->
     {% include "frontend/layout/menu.html" %}

@@ -1,5 +1,74 @@
 {% load static %}
 
+	<!-- section: contact -->
+	<section id="contact" class="section">
+		<div class="container">
+			<!-- heading -->
+			<div class="heading separators-2">
+				<h4 class="uppercase" style="color:#fff;">Contact us</h4>
+				<p style="color:#fff; font-size: 17px;">{{ aboutus.description }}</p>
+			</div>
+			<!-- end heading -->
+			<div class="row">
+				<div class="span6">
+					<!-- contact form -->
+					<div class="cform" id="contact-form">
+						<div id="sendmessage">
+							Your message has been sent. Thank you!
+						</div>
+						<form action="email.php" method="POST" class="contactForm clearfix">
+							<div class="field your-name">
+								<input type="text" name="your-name" placeholder="Your Name" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field your-email">
+								<input type="text" name="your-email" placeholder="Your Email" class="cform-text" size="40" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field subject">
+								<input type="text" name="subject" placeholder="Subject" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation">
+								</div>
+							</div>
+							<div class="field message">
+								<textarea name="message" class="cform-textarea" cols="40" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+								<div class="validation">
+								</div>
+							</div>
+							<input type="submit" value="Send message" class="btn btn-theme pull-left">
+						</form>
+					</div>
+					<!-- end contact form -->
+				</div>
+				<div class="span6">
+					<div class="sidecontact">
+						<i class="fas fa-map-marker-alt"></i>
+						<h1>PT. Agrakom Para Relatika </br>
+							GKM Green Tower, 15th Floor, </br>
+							Jl. TB Simatupang Kav. 89G, <br/>
+							Jakarta Selatan 12520, </br>
+							Indonesia</h1>
+					</div>
+					<div class="sidecontact">
+						<i class="fas fa-phone"></i>
+						<h1>Tel. 6221-22785011, </br>Fax. 6221-22785014</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="overlay overlay-genie" data-steps="m 701.56545,809.01175 35.16718,0 0,19.68384 -35.16718,0 z;m 698.9986,728.03569 41.23353,0 -3.41953,77.8735 -34.98557,0 z;m 687.08153,513.78234 53.1506,0 C 738.0505,683.9161 737.86917,503.34193 737.27015,806 l -35.90067,0 c -7.82727,-276.34892 -2.06916,-72.79261 -14.28795,-292.21766 z;m 403.87105,257.94772 566.31246,2.93091 C 923.38284,513.78233 738.73561,372.23931 737.27015,806 l -35.90067,0 C 701.32034,404.49318 455.17312,480.07689 403.87105,257.94772 z;M 51.871052,165.94772 1362.1835,168.87863 C 1171.3828,653.78233 738.73561,372.23931 737.27015,806 l -35.90067,0 C 701.32034,404.49318 31.173122,513.78234 51.871052,165.94772 z;m 52,26 1364,4 c -12.8007,666.9037 -273.2644,483.78234 -322.7299,776 l -633.90062,0 C 359.32034,432.49318 -6.6979288,733.83462 52,26 z;m 0,0 1439.999975,0 0,805.99999 -1439.999975,0 z">
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 806" preserveAspectRatio="none">
+				<path class="overlay-path" d="m 701.56545,809.01175 35.16718,0 0,19.68384 -35.16718,0 z"/>
+			</svg>
+			<button type="button" class="overlay-close">Close</button>
+			<nav>
+				<!-- Map -->
+				<div id="map" class="google-map" data-position-latitude="23.220610500000000000 " data-position-longitude="72.657986499999990000" data-marker-img="{% static 'img/07-marker.png' %}' %}" data-marker-width="64" data-marker-height="58"></div>
+			</nav>
+		</div>
+	</section>
 	<!-- Footer -->
 	<footer>
 		<div class="container">
@@ -37,10 +106,11 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="{% static 'js/validate.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/supersized.shutter.min.js' %}"></script>
 	<script src="{% static 'js/switcher.js' %}"></script>
 	<script src="{% static 'js/readmore.js' %}"></script>
+{% if 'detail-' not in request.path %}
+	<script type="text/javascript" src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/supersized.shutter.min.js' %}"></script>
 	<script>
 		//slider initialization
 		jQuery(function($){
@@ -54,17 +124,16 @@
 				// Components
 				slide_links :	'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
 				slides : [
-					{image:"{% static 'img/0785418996.jpg' %}"},
-					{image:"{% static 'img/1441839910.jpg' %}"},
-					{image:"{% static 'img/2019895228.jpg' %}"},
-					{image:"{% static 'img/3671657145.jpg' %}"},
-					{image:"{% static 'img/6243852331.jpg' %}"},
-					{image:"{% static 'img/8760053979.jpg' %}"}
+					{image:"{% static 'img/100b3e5f5b64bd_preview.jpeg' %}"},
+					{image:"{% static 'img/2017_10_30_34900_1509327632._large_preview.jpeg' %}"},
+					{image:"{% static 'img/10516118573_71fca3130b_b_preview.jpeg' %}"},
+					{image:"{% static 'img/Borobudur-Sunrise-and-Merapi-Volcano-_preview.jpeg' %}"}
 				]
 			});
 		});
 	</script>
 	<!-- end jQuery -->
+{% endif %}
 </body>
 </html>
 
