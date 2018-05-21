@@ -37,15 +37,14 @@ class CreateServiceDetailForm(ModelForm):
         (False, 'Not Active'),
     )
 
-    our_services = ModelChoiceField(initial='Select Our Services', required=True, queryset=OurServices.objects.filter().order_by('id'),
-                                    widget=Select(attrs={'class': 'form-control ', }))
+    # our_services = ModelChoiceField(initial='Select Our Services', required=True, queryset=OurServices.objects.filter().order_by('id'),
+    #                                 widget=Select(attrs={'class': 'form-control ', }))
 
     image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'}, )
 
-    caption = CharField(
-        max_length=225,
-        error_messages={'placeholder': "input caption"},
-        widget=TextInput(attrs={'class': "form-control", 'placeholder': "input caption"}),
+    description = CharField(
+        required=False,
+        widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
     )
 
     status = ChoiceField(
@@ -57,7 +56,7 @@ class CreateServiceDetailForm(ModelForm):
 
     class Meta:
         model = OurServiceDetail
-        fields = ('our_services', 'image', 'caption', 'status')
+        fields = ( 'image', 'description', 'status')
     #     field = "image"  # Field name
     #     MinW = 280  # Min. Width
     #     MaxW = 280  # Max. Width

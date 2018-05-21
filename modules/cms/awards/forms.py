@@ -9,15 +9,15 @@ class CreateAwardsForm(ModelForm):
         (False, 'Not Active'),
     )
 
-    title = CharField(
-        max_length=225,
-        error_messages={'required': 'Title can not be empty', 'placeholder': "input title"},
-        widget=TextInput(attrs={'class': "form-control", 'placeholder': "input title"}),
-    )
-    description = CharField(
-        required=False,
-        widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
-    )
+    # title = CharField(
+    #     max_length=225,
+    #     error_messages={'required': 'Title can not be empty', 'placeholder': "input title"},
+    #     widget=TextInput(attrs={'class': "form-control", 'placeholder': "input title"}),
+    # )
+    # description = CharField(
+    #     required=False,
+    #     widget=Textarea(attrs={'class': 'form-control', 'placeholder': "input physical location description"}),
+    # )
 
     image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'},)
     # position = IntegerField(
