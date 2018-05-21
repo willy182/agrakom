@@ -107,8 +107,8 @@
 	<script type="text/javascript" src="{% static 'js/validate.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 	<script src="{% static 'js/switcher.js' %}"></script>
-	<script src="{% static 'js/readmore.js' %}"></script>
 {% if 'detail-' not in request.path %}
+	<script src="{% static 'js/readmore.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/supersized.shutter.min.js' %}"></script>
 	<script>
@@ -133,6 +133,19 @@
 		});
 	</script>
 	<!-- end jQuery -->
+{% else %}
+	<script type="text/javascript" src="{% static 'js/bslider.js' %}"></script>
+	<script>
+	  $(document).ready(function(){
+		$('.bxslider').bxSlider({
+			speed: 1500,
+			auto: true,
+			pager:false,
+			autoControls:false ,
+			controls:false,
+		});
+	  });
+	</script>
 {% endif %}
 </body>
 </html>

@@ -12,16 +12,23 @@
 				<!-- project description -->
 				<div class="span12 text-center">
 					<div>
-						<h3 class="uppercase" style=""><strong>{{ detail.0.event_galery.title }}</strong></h3>
+					{% if 'detail-event' in request.path %}
+						<h3 class="uppercase" style="margin-top:60px;"><strong>{{ detail.0.event_galery.title }}</strong></h3>
 						<p>
 							{{ detail.0.event_galery.description }}
 						</p>
+					{% else %}
+						<h3 class="uppercase" style="margin-top:60px;"><strong>{{ detail.0.whatsnew.title }}</strong></h3>
+						<p>
+							{{ detail.0.whatsnew.description }}
+						</p>
+					{% endif %}
 					</div>
 				</div>
 				<!-- end project description -->
 				<!-- project slider -->
 				<div id="projectslider">
-					<div class="container project-slider">
+					<div class="container roject-slider bxslider">
 				{% if detail.count %}
 					{% for row in detail %}
 						<div class="project text-center">

@@ -2431,7 +2431,7 @@ ul.nav_modal li .prev:hover svg {
 }
 
 #projectslider {
-    margin-left: 30px;
+    margin-left: none;
 }
 
 
@@ -3886,3 +3886,83 @@ ul.colors li a.active:after {
 /**/
 
 
+.available {
+  position: relative;
+}
+
+.available:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  vertical-align: top;
+  background: green;
+  padding: 3px 12px;
+  margin-right: 5px;
+  max-width: 240px;
+  width: 240px;
+  min-width: 20px;
+  height: 20px;
+  background-color: #206257;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* image carrousel */
+
+.mainan {
+  text-align: center;
+  max-width:840px;
+  width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+
+img.absolut {
+  text-align: center;
+  left: 0;
+  margin-left: 0;
+  position: absolute;
+}
+
+.center-cropped {
+  width: 200px;
+  height: 200px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Set the image to fill its parent and make transparent */
+.center-cropped img {
+  min-height: 100%;
+  min-width: 100%;
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  /* IE 5-7 */
+  filter: alpha(opacity=0);
+  /* modern browsers */
+  opacity: 1;
+}
+
+.bx-wrapper {
+  position: relative;
+  margin-bottom: 60px;
+  padding: 0;
+  *zoom: 1;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+.bx-wrapper img {
+  max-width: 100%;
+}
+.bxslider {
+  margin: 0;
+  padding: 0;
+  /*fix flickering when used background-image instead of <img> (on Chrome)*/
+  -webkit-perspective: 1000;
+}
