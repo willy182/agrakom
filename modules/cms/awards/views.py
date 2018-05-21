@@ -37,20 +37,15 @@ class CreateAwards(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = CreateAwardsForm(request.POST, request.FILES)
-        try:
-            AwardsGalery.objects.get(title__iexact=request.POST.get('title'))
-            form.errors.title = {'0': "Title Already Exists"}
-            return render(request, 'cms/awards/add.html', {'form': form})
 
-        except AwardsGalery.DoesNotExist:
-            if form.is_valid():
-                action = form.save(commit=False)
-                # action.created_by = request.user
-                action.save()
-                return HttpResponseRedirect('/cms-agrakom/awards/')
-            else:
-                form = CreateAwardsForm(request.POST, request.FILES)
-                return render(request, 'cms/awards/add.html', {'form': form})
+        if form.is_valid():
+            action = form.save(commit=False)
+            # action.created_by = request.user
+            action.save()
+            return HttpResponseRedirect('/cms-agrakom/awards/')
+        else:
+            form = CreateAwardsForm(request.POST, request.FILES)
+            return render(request, 'cms/awards/add.html', {'form': form})
 
 
 class EditAwards(TemplateView):
@@ -100,11 +95,11 @@ class GetListAwards(BaseDatatableView):
         filter_by = self.request.GET.get(u'filter_by', None)
 
         if search:
-            if filter_by == "title":
-                qs = qs.filter(Q(title__icontains=search))
-            elif filter_by == "description":
-                qs = qs.filter(Q(description__icontains=search))
-            elif filter_by == "status":
+            # if filter_by == "title":
+            #     qs = qs.filter(Q(title__icontains=search))
+            # elif filter_by == "description":
+            #     qs = qs.filter(Q(description__icontains=search))
+            if filter_by == "status":
                 qs = qs.filter(Q(status__icontains=search))
             else:
                 qs = qs.filter(
@@ -129,15 +124,15 @@ class GetListAwards(BaseDatatableView):
                              '<span class="label label-danger">Not Active</span>' \
                              '</p>' \
                              '</td>'
-                if len(item.description) > 25:
-                    description = item.description[0:25] + ' ...'
-                else:
-                    description = item.description
+                # if len(item.description) > 25:
+                #     description = item.description[0:25] + ' ...'
+                # else:
+                #     description = item.description
 
                 json_data.append([
                     NumberingCounter,
-                    item.title,
-                    description,
+                    # item.title,
+                    # description,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),

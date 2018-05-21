@@ -32,7 +32,7 @@
                             <input type="hidden" name="id" value="{{id}}">
                             {% csrf_token %}
                             <div class="box-body">
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label class="col-sm-2 control-label">Title</label>
                                     <div class="col-sm-9">
                                         {{form.title}}
@@ -47,7 +47,7 @@
                                         <span class="help-block"></span>
                                         <span style="color:red">{{ form.errors.description|linebreaks }}</span>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Image</label>
                                     <div class="col-sm-9">
@@ -62,7 +62,7 @@
                                      <div class="col-sm-9" id="div_prev" style="margin-left:187px;border: 1px black;">
                                         <img id="prev_image" style="width:640px;height:350px;" src="{% if form.instance.image %}/{{ form.instance.image.url }}{%else%}/static/images/NoImageAvailable.jpg{% endif %}"
                                              onerror="this.src='/static/images/NoImageAvailable.jpg';" alt="your image"/>
-                                        <div><span style="color:red;font-weight:bold"> *) Min resolution : 640 x 350 Pixel</span></div>
+                                        <div><span style="color:red;font-weight:bold"> *) Min resolution : 670 x 480 Pixel</span></div>
                                     </div>
 
                                 </div>

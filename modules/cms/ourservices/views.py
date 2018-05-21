@@ -229,15 +229,9 @@ class GetListDetail(BaseDatatableView):
         filter_by = self.request.GET.get(u'filter_by', None)
 
         if search:
-            if filter_by == "about-us":
-                qs = qs.filter(Q(our_service__title__icontains=search))
-            elif filter_by == "caption":
-                qs = qs.filter(Q(caption__icontains=search))
-            elif filter_by == "status":
-                qs = qs.filter(Q(status__icontains=search))
-            else:
-                qs = qs.filter(
-                    Q(about_us__name__icontains=search) | Q(caption__icontains=search) | Q(status__icontains=search))
+
+            qs = qs.filter(
+                Q(description__icontains=search) | Q(status__icontains=search))
 
         return qs
 
@@ -258,16 +252,19 @@ class GetListDetail(BaseDatatableView):
                              '<span class="label label-danger">Not Active</span>' \
                              '</p>' \
                              '</td>'
-                if len(item.caption) > 25:
-                    caption = item.caption[0:25] + ' ...'
+                if item.description:
+                    if len(item.description) > 25:
+                        description = item.description[0:25] + ' ...'
+                    else:
+                        description = item.description
                 else:
-                    caption = item.caption
+
+                    description = '-'
 
                 json_data.append([
                     NumberingCounter,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
-                    caption,
-                    item.our_services.title,
+                    description,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     status,
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/ourservices/detail/edit/?id=' +
