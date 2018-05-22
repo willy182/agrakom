@@ -37,8 +37,11 @@ class CreateServiceDetailForm(ModelForm):
         (False, 'Not Active'),
     )
 
-    # our_services = ModelChoiceField(initial='Select Our Services', required=True, queryset=OurServices.objects.filter().order_by('id'),
-    #                                 widget=Select(attrs={'class': 'form-control ', }))
+    title = CharField(
+        max_length=225,
+        error_messages={'required': 'Title can not be empty', 'placeholder': "input title"},
+        widget=TextInput(attrs={'class': "form-control", 'placeholder': "input title"}),
+    )
 
     image = FileField(widget=FileInput(attrs={'class': 'form-control', 'id': 'img_input'}), required=True, error_messages={'required': 'image can not be empty'}, )
 
@@ -56,7 +59,7 @@ class CreateServiceDetailForm(ModelForm):
 
     class Meta:
         model = OurServiceDetail
-        fields = ( 'image', 'description', 'status')
+        fields = ('title', 'image', 'description', 'status')
     #     field = "image"  # Field name
     #     MinW = 280  # Min. Width
     #     MaxW = 280  # Max. Width

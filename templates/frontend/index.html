@@ -61,83 +61,26 @@
 			<!-- End heading -->
 			<!-- team block -->
 			<div class="row exp_block">
+		{% if whoweare.count > 0 %}
+			{% for val in whoweare %}
 				<!-- block-1 -->
 				<div class="span3 flyIn">
 					<a class="exp_tt">
-						<img alt="Public Relation" class="face" src="{% static 'img/pr.jpg' %}">
+						<img alt="Public Relation" class="face" src="{{ val.image.url }}">
 						<div class="archive">
 							<div id="content">
 								<div class="post type-post status-publish format-standard hentry category-uncategorized entry">
 									<div class="entry-content">
-										<h2 class="entry-title text-center"><a href="#">Public Relationship</a></h2>
-										<p class="text-center">As our main core business, we support all round Public Relations activities in media relations:
-										Press Releases – Interviews – Press Briefings – Press Conference – Tele Video Conference – Story Pitch – Media Visit – Technology Updates – Media Seeding/Review – Media Coaching – Media Tracking – Translation<br>
-										We do also support of General Consultancy services for Government Affairs and Public Affairs.</p>
+										<h2 class="entry-title text-center"><a href="#">{{ val.title }}</a></h2>
+										<p class="text-center">{{ val.description }}</p>
 									</div><!-- end .entry-content -->
 								</div><!-- end .entry -->
 							</div><!-- end #content -->
 						</div><!-- end .archive -->
 					</a>
 				</div>
-				<!-- block-2 -->
-				<div class="span3 flyIn">
-					<a class="exp_tt">
-						<img alt="Marketing Services" class="face" src="{% static 'img/marketing.jpg' %}">
-						<div class="archive">
-							<div id="content">
-								<div class="post type-post status-publish format-standard hentry category-uncategorized entry">
-									<div class="entry-content">
-										<h2 class="entry-title text-center"><a href="#">Media Monitoring</a></h2>
-										<p class="text-center">As our main core business, we support all round Public Relations activities in media relations:
-										Press Releases – Interviews – Press Briefings – Press Conference – Tele Video Conference – Story Pitch – Media Visit – Technology Updates – Media Seeding/Review – Media Coaching – Media Tracking – Translation <br>
-										Monitoring for printing, online and electronic media.<br>
-										Reporting, summarizing and analyzing media coverage.<br>
-										Translation.<br>
-										The final monitoring report will be prepared accordingly to our clients inquiries and needs.</p>
-									</div><!-- end .entry-content -->
-								</div><!-- end .entry -->
-							</div><!-- end #content -->
-						</div><!-- end .archive -->
-					</a>
-				</div>
-				<!-- block-3 -->
-				<div class="span3 flyIn">
-					<a class="exp_tt">
-						<img alt="Media Monitoring" class="face" src="{% static 'img/monitoring.jpg' %}">
-						<div class="archive">
-							<div id="content">
-								<div class="post type-post status-publish format-standard hentry category-uncategorized entry">
-									<div class="entry-content">
-										<h2 class="entry-title text-center"><a href="#">Media Monitoring</a></h2>
-										<p class="text-center">As our main core business, we support all round Public Relations activities in media relations:
-										Press Releases – Interviews – Press Briefings – Press Conference – Tele Video Conference – Story Pitch – Media Visit – Technology Updates – Media Seeding/Review – Media Coaching – Media Tracking – Translation <br>
-										Monitoring for printing, online and electronic media.<br>
-										Reporting, summarizing and analyzing media coverage.<br>
-										Translation.<br>
-										The final monitoring report will be prepared accordingly to our clients inquiries and needs.</p>
-									</div><!-- end .entry-content -->
-								</div><!-- end .entry -->
-							</div><!-- end #content -->
-						</div><!-- end .archive -->
-					</a>
-				</div>
-				<!-- block-4 -->
-				<div class="span3 flyIn">
-					<a class="exp_tt">
-						<img alt="Social Media" class="face" src="{% static 'img/social-media.jpg' %}">
-						<div class="archive">
-							<div id="content">
-								<div class="post type-post status-publish format-standard hentry category-uncategorized entry">
-									<div class="entry-content">
-										<h2 class="entry-title text-center"><a href="#">Social Media</a></h2>
-										<p class="text-center">As the digital era is rapidly evolving before our eyes and in conjunction with our Public Relations program, we come with the latest service: Social Media. <br>
-										Our dedicated and well-trained team will develop, manage, track and report our client’s social media activities on Facebook and Twitter, so the program will be executed with the right strategy and action.</p>
-									</div><!-- end .entry-content -->
-								</div><!-- end .entry -->
-							</div><!-- end #content -->
-						</div><!-- end .archive -->
-					</a>
-				</div>
+			{% endfor %}
+		{% endif %}
 			</div>
 		</div>
 

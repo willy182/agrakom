@@ -229,9 +229,15 @@ class GetListDetail(BaseDatatableView):
         filter_by = self.request.GET.get(u'filter_by', None)
 
         if search:
-
-            qs = qs.filter(
-                Q(description__icontains=search) | Q(status__icontains=search))
+            if filter_by == "title":
+                qs = qs.filter(Q(title__icontains=search))
+            elif filter_by == "description":
+                qs = qs.filter(Q(description__icontains=search))
+            elif filter_by == "status":
+                qs = qs.filter(Q(status__icontains=search))
+            else:
+                qs = qs.filter(
+                    Q(title__icontains=search) | Q(description__icontains=search) | Q(status__icontains=search))
 
         return qs
 
@@ -263,6 +269,7 @@ class GetListDetail(BaseDatatableView):
 
                 json_data.append([
                     NumberingCounter,
+                    item.title,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     description,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),

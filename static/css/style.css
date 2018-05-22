@@ -1184,6 +1184,8 @@ section#studio {
 }
 
 .exp_block .span3 .face {
+    width: 250px;
+    height: 250px;
     border: 15px solid rgba(0, 0, 0, 0.03);
     border-radius: 50%;
     -moz-border-radius: 50%;
