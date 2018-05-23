@@ -380,6 +380,7 @@ em {
 
 #menu-main {
     margin: 0px;
+    min-height: 110px;
 }
 
 ul#menu-main>li>a {
@@ -387,11 +388,12 @@ ul#menu-main>li>a {
     color: #4A4F52;
     font-size: 14px;
     text-transform: uppercase;
-    line-height: 56px;
+    line-height: 90px;
+    max-height: 90px;
 }
 
 ul#menu-main>li>a:hover {
-    background: none repeat scroll 0 0 #F1F1F1;
+    background: none repeat scroll 0 0 #f1f1f1;
     border-bottom: 5px solid #D9B346;
     color: #D9B346;
 }
@@ -576,6 +578,7 @@ header .logo {
 
 section.section {
     padding: 0px;
+    min-height: 700px;
 }
 
 section.section .picture h4 {
@@ -590,11 +593,12 @@ section.section .picture h3 {
 
 section.section h4 {
     text-align: center;
-    margin: 2em 0 -0.1em;
+    margin: 3em 0 -0.1em;
     font-size: 34px;
     font-weight: 600;
     letter-spacing: -1px;
     display: inline-table;
+    color: #666;
 }
 
 
@@ -1303,7 +1307,7 @@ section#studio {
 
 #services {
     padding: 0;
-    background: url("../img/23-bg-input.png") repeat scroll 0 0 #f6f6f6;
+    background: url("../img/23-bg-input.png") repeat scroll 0 0 #3AA190;
     position: relative;
 }
 
@@ -1353,6 +1357,7 @@ section#studio {
 
 section#services {
     position: relative;
+    min-height: 700px;
 }
 
 section#services h2 {
@@ -2115,15 +2120,12 @@ ul.nav_modal li .prev:hover svg {
 }
 
 .portfolio-item {
-    width: 25%;
-    float: left;
-    padding: 0;
-    margin: 0px;
-    box-shadow: 0 0 0 1px #000000;
-    -wenkit-box-shadow: 0 0 0 1px #000000;
-    -o-box-shadow: 0 0 0 1px #000000;
-    -moz-box-shadow: 0 0 0 1px #000000;
-    -ms-box-shadow: 0 0 0 1px #000000;
+    width: 350px;
+    /*float: left;*/
+    padding: 2px;
+    margin: 0;
+    display: -webkit-inline-box;
+
 }
 
 .portfolio-item .portfolio-image {
@@ -3200,7 +3202,7 @@ i.icon-white {
 
 
 .btn.btn-theme:hover {
-    background: #000 !important;
+    background: #3AA190 !important;
 }
 
 
@@ -3660,7 +3662,7 @@ ul.colors li a.active:after {
     }
 
     .navbar-inner .btn-navbar {
-        margin: 20px 20px 0;
+        margin: 40px 30px 0;
     }
     #header-wrapper .span12 h1 {
         font-size: 38px;
@@ -3789,7 +3791,7 @@ ul.colors li a.active:after {
 }
 
 .separators-2 h4 {
-    background: url("../img/separator1.png") no-repeat scroll center bottom;
+    background: url("../img/separator2-invert.png") no-repeat scroll center bottom;
 }
 
 .separators {
@@ -3888,69 +3890,6 @@ ul.colors li a.active:after {
 /**/
 
 
-.available {
-  position: relative;
-}
-
-.available:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  vertical-align: top;
-  background: green;
-  padding: 3px 12px;
-  margin-right: 5px;
-  max-width: 240px;
-  width: 240px;
-  min-width: 20px;
-  height: 20px;
-  background-color: #206257;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* image carrousel */
-
-.mainan {
-  text-align: center;
-  max-width:840px;
-  width: 800px;
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
-  height: 400px;
-}
-
-img.absolut {
-  text-align: center;
-  left: 0;
-  margin-left: 0;
-  position: absolute;
-}
-
-.center-cropped {
-  width: 200px;
-  height: 200px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* Set the image to fill its parent and make transparent */
-.center-cropped img {
-  min-height: 100%;
-  min-width: 100%;
-  /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  /* IE 5-7 */
-  filter: alpha(opacity=0);
-  /* modern browsers */
-  opacity: 1;
-}
-
 .bx-wrapper {
   position: relative;
   margin-bottom: 60px;
@@ -3967,4 +3906,217 @@ img.absolut {
   padding: 0;
   /*fix flickering when used background-image instead of <img> (on Chrome)*/
   -webkit-perspective: 1000;
+}
+
+/*load more button*/
+.load-more {
+    display: inline-block;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.load-more .btn {
+    margin: 30px 0;
+    height: 50px;
+    width: 150px;
+    background-color: #f1f1f1;
+    color: #666;
+
+}
+
+.load-more .btn:hover {
+    background-color: #666;
+    color: #fff;
+
+}
+
+/* our client*/
+
+img[data-src] {
+  opacity: 0;
+}
+
+img {
+  opacity: 1;
+}
+
+.overflow-wrapper img.show-image {
+  opacity: 1;
+}
+
+.client-wrap {
+  margin: 5% auto 0;
+  padding: 0;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.client-wrap:hover > .client {
+  opacity: .25;
+}
+
+.opacity-focus:hover > .client,
+.solid.client {
+  opacity: 1;
+}
+
+.opacity-focus .client {
+  z-index: 0;
+}
+
+.client {
+  vertical-align: middle;
+  position: relative;
+  margin: 5px;
+  max-width: calc(20% - 20px);
+  height: 100%;
+  width: 100%;
+  list-style-type: none;
+  display: inline-block;
+  text-align: center;
+  transition: .2s ease all;
+}
+
+
+.client:hover .client-meta {
+  opacity: 1;
+  visibility: visible;
+}
+
+.client:hover .overflow-wrapper {
+  z-index: 5;
+  left: 0;
+}
+
+
+/* Responsive Reset */
+.reset {
+  opacity: 1 !important;
+}
+.reset .client-logo {
+  width: 80% !important;
+}
+
+.touch .reset .client-more-less::after {
+  opacity: 1 !important;
+}
+/* End Responsive Reset */
+
+.client:hover .client-logo {
+  width: 76%;
+}
+
+img.reset-logo {
+  width: 80%;
+}
+
+.client-logo {
+  z-index: 1;
+  position: relative;
+  left: 20%;
+  top: 50%;
+  width: 80%;
+  height: auto;
+  padding-bottom: 50px;
+  transition: .2s ease all;
+  -webkit-animation: fadein .8s;
+     -moz-animation: fadein .8s;
+      -ms-animation: fadein .8s;
+       -o-animation: fadein .8s;
+          animation: fadein .8s;
+}
+
+/* Sizes for demo */
+.square {
+  padding: 20%;
+}
+
+.smaller {
+  padding: 10%;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .client {
+    max-width: calc(25% - 30px);
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .client {
+    max-width: calc(33.33% - 30px);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .client {
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .client {
+    float: none;
+    max-width: 260px;
+    width: 90%;
+  }
+  .client-wrap {
+    text-align: center;
+  }
+}
+
+/* Animation */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+    width: 65%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+    width: 65%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+@-ms-keyframes fadein {
+  from {
+    opacity: 0;
+    width: 65%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+@-o-keyframes fadein {
+  from {
+    opacity: 0;
+    width: 65%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    width: 65%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
 }

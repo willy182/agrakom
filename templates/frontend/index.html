@@ -24,7 +24,7 @@
 	<section id="about" class="section">
 		<!-- section heading -->
 		<div class="container">
-			<div class="heading">
+			<div class="heading separators">
 				<h4 class="uppercase">Whats New</h4>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 					<li class="span4">
 						<div class="thumbnail" style="background-color: #f1f1f1;">
 							<img src="{{ row.image.url }}" alt="ALT NAME">
-							<h3 class="entry-title" style="margin-top:10px;">
+							<h3 class="entry-title" style="margin-top:10px; margin-left: 10px; padding-bottom: 10px;">
 								<a href="/detail-whatsnew/{{ row.id }}/{% slug_url row.title %}" class="exp_tt">{{ row.title }}</a>
 							</h3>
 						</div>
@@ -46,6 +46,9 @@
 				{% endfor %}
 				</ul>
 			{% endif %}
+			</div>
+			<div class="clearfix aligncenter">
+				<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
 			</div>
 		</div>
 	</section>
@@ -89,22 +92,46 @@
 				<h4 class="uppercase">Awards</h4>
 			</div>
 			<!--gallery slider -->
-			<div class="studio">
-				<div class="row">
-					<div class="col-xs-12">
-						<div id="swiper" class="swiper-container">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide"><img src="{% static 'img/award.jpg' %}" alt="slider image 1" ></div>
-								<div class="swiper-slide"><img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="slider image 2"></div>
-								<div class="swiper-slide"><img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="slider image 3"/></div>
-								<div class="swiper-slide"><img src="{% static 'img/mix-best-service-agency.jpg' %}" alt="slider image 4"/></div>
-								<div class="swiper-slide"><img src="{% static 'img/mix-best-team.jpg' %}" alt="slider image 5"/></div>
-								<div class="swiper-slide"><img src="{% static 'img/mix-silver-winner.jpg' %}" alt="slider image 6"/></div>
+			<div id="info" class="section ">
+				<div class="container">
+					<ul class="thumbnails">
+						<li class="span4">
+							<div class="thumbnail" style="background-color: #f1f1f1;">
+								<img src="{% static 'img/award.jpg' %}" alt="">
 							</div>
-						</div>
-					</div>
+						</li>
+						<li class="span4">
+							<div class="thumbnail" style="background-color: #f1f1f1;">
+								<img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="">
+							</div>
+						</li>
+						<li class="span4">
+							<div class="thumbnail" style="background-color: #f1f1f1;">
+								<img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="">
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix aligncenter">
+					<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
 				</div>
 			</div>
+			<!--<div class="studio">-->
+				<!--<div class="row">-->
+					<!--<div class="col-xs-12">-->
+						<!--<div id="swiper" class="swiper-container">-->
+							<!--<div class="swiper-wrapper">-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/award.jpg' %}" alt="slider image 1" ></div>-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="slider image 2"></div>-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="slider image 3"/></div>-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-service-agency.jpg' %}" alt="slider image 4"/></div>-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-team.jpg' %}" alt="slider image 5"/></div>-->
+								<!--<div class="swiper-slide"><img src="{% static 'img/mix-silver-winner.jpg' %}" alt="slider image 6"/></div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 			<!--End gallery slider -->
 		</section>
 	</section>
@@ -114,157 +141,162 @@
 	<section id="services" class="section">
 		<div class="container">
 			<!-- Heading -->
-			<div class="heading separators">
-				<h4 class="uppercase">Our Clients</h4>
+			<div class="heading separators-2">
+				<h4 class="uppercase" style="color:#fff;">Clients</h4>
 			</div>
 			<!-- Service block -->
 			<div class="row">
-				<div class="span3 animated-fast flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-car"></i></div>
-							</div>
-						</div>
-						<h2><a href="#automotive" data-reveal-id="service01">Automotive</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-tv"></i></div>
-							</div>
-						</div>
-						<h2><a href="#tv-channel" data-reveal-id="service02">TV Channel</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-credit-card"></i></div>
-							</div>
-						</div>
-						<h2><a href="#banking" data-reveal-id="service03">Banking</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-fast flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-plane"></i></div>
-							</div>
-						</div>
-						<h2><a href="#airlines" data-reveal-id="service04">Airlines</a></h2>
-					</div>
+				<div class="client">
+					<img class="client-logo" src="https://vignette.wikia.nocookie.net/logopedia/images/9/9d/Google_logo_white_2015.svg/revision/latest/scale-to-width-down/640?cb=20150901202125">
 				</div>
 			</div>
-			<div class="row">
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-lightbulb"></i></div>
-							</div>
-						</div>
-						<h2><a href="#home-appliances" data-reveal-id="service05">Home Appliances</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-stethoscope"></i></div>
-							</div>
-						</div>
-						<h2><a href="#healthcare" data-reveal-id="service06">Healthcare</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-wrench"></i></div>
-							</div>
-						</div>
-						<h2><a href="#households" data-reveal-id="service07">Households</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fa fa-sitemap"></i></div>
-							</div>
-						</div>
-						<h2><a href="#networking" data-reveal-id="service08">Networking</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fab fa-android"></i></div>
-							</div>
-						</div>
-						<h2><a href="#it-product" data-reveal-id="service09">IT Product</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-home"></i></div>
-							</div>
-						</div>
-						<h2><a href="#property" data-reveal-id="service10">Property</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-medkit"></i></div>
-							</div>
-						</div>
-						<h2><a href="#pharmaceutical" data-reveal-id="service11">Pharmaceutical</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-wifi"></i></div>
-							</div>
-						</div>
-						<h2><a href="#telco-product" data-reveal-id="service12">Telco Product</a></h2>
-					</div>
-				</div>
-				<div class="span3 animated-slow flyIn">
-					<div class="service-box">
-						<div class="iconface clearfix">
-							<div class="num">
-								<div class="bg-numero roda"></div>
-								<div class="numero n20"><i class="fas fa-recycle"></i></div>
-							</div>
-						</div>
-						<h2><a href="#consumer-products" data-reveal-id="service13">Consumer Products</a></h2>
-					</div>
-				</div>
-			</div>
+			<!--<div class="row">-->
+				<!--<div class="span3 animated-fast flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-car"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#automotive" data-reveal-id="service01">Automotive</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-tv"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#tv-channel" data-reveal-id="service02">TV Channel</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-credit-card"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#banking" data-reveal-id="service03">Banking</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-fast flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-plane"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#airlines" data-reveal-id="service04">Airlines</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="row">-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-lightbulb"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#home-appliances" data-reveal-id="service05">Home Appliances</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-stethoscope"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#healthcare" data-reveal-id="service06">Healthcare</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-wrench"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#households" data-reveal-id="service07">Households</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fa fa-sitemap"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#networking" data-reveal-id="service08">Networking</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fab fa-android"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#it-product" data-reveal-id="service09">IT Product</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-home"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#property" data-reveal-id="service10">Property</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-medkit"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#pharmaceutical" data-reveal-id="service11">Pharmaceutical</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-wifi"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#telco-product" data-reveal-id="service12">Telco Product</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="span3 animated-slow flyIn">-->
+					<!--<div class="service-box">-->
+						<!--<div class="iconface clearfix">-->
+							<!--<div class="num">-->
+								<!--<div class="bg-numero roda"></div>-->
+								<!--<div class="numero n20"><i class="fas fa-recycle"></i></div>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2><a href="#consumer-products" data-reveal-id="service13">Consumer Products</a></h2>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 		</div>
 	</section>
 	<!-- End services section-->
@@ -272,12 +304,12 @@
 	<!-- Work section -->
 	<section id="works" class="section">
 		<!-- Heading -->
-		<div class="container separators">
-			<div class="heading">
-				<h4 class="uppercase">Events</h4>
+		<div class="container">
+			<div class="heading separators">
+				<h4 class="uppercase">Product Highlight</h4>
 			</div>
 		</div>
-		<div class="clearfix">
+		<div class="clearfix aligncenter">
 	{% if events.count > 0 %}
 		{% for rowEvent in events %}
 			<!-- portfolio item -->
@@ -297,8 +329,34 @@
 		{% endfor %}
 	{% endif %}
 		</div>
-		<div class="clearfix"></div>
+		<div class="clearfix aligncenter">
+			<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
+		</div>
 		<div class="clearfix"></div>
 	</section>
 	<!-- Work section -->
+	<script type="text/javascript" src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/supersized.shutter.min.js' %}"></script>
+	<script>
+		//slider initialization
+		jQuery(function($){
+			"use strict";
+			$.supersized({
+				// Functionality
+				slide_interval : 4000,		// Length between transitions
+				transition : 1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+				transition_speed : 1200,		// Speed of transition
+				keyboard_nav : 0,
+				// Components
+				slide_links :	'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
+				slides : [
+					{image:"{% static 'img/100b3e5f5b64bd_preview.jpeg' %}"},
+					{image:"{% static 'img/2017_10_30_34900_1509327632._large_preview.jpeg' %}"},
+					{image:"{% static 'img/10516118573_71fca3130b_b_preview.jpeg' %}"},
+					{image:"{% static 'img/Borobudur-Sunrise-and-Merapi-Volcano-_preview.jpeg' %}"}
+				]
+			});
+		});
+	</script>
+	<!-- end jQuery -->
 	{% endblock %}
