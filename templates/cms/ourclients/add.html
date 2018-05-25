@@ -31,22 +31,22 @@
                         <form class="form-horizontal" role="form" id="form_permission" method="post" action="/cms-agrakom/ourclients/add/" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-9">
-                                        {{form.name}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.name|linebreaks }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Descriptions</label>
-                                    <div class="col-sm-9">
-                                        {{form.description}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.description|linebreaks }}</span>
-                                    </div>
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-sm-2 control-label">Name</label>-->
+                                    <!--<div class="col-sm-9">-->
+                                        <!--{{form.name}}-->
+                                        <!--<span class="help-block"></span>-->
+                                        <!--<span style="color:red">{{ form.errors.name|linebreaks }}</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-sm-2 control-label">Descriptions</label>-->
+                                    <!--<div class="col-sm-9">-->
+                                        <!--{{form.description}}-->
+                                        <!--<span class="help-block"></span>-->
+                                        <!--<span style="color:red">{{ form.errors.description|linebreaks }}</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Image</label>
                                     <div class="col-sm-9">
@@ -60,14 +60,14 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Caption</label>
-                                    <div class="col-sm-9">
-                                        {{form.caption}}
-                                        <span class="help-block"></span>
-                                        <span style="color:red">{{ form.errors.caption|linebreaks }}</span>
-                                    </div>
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-sm-2 control-label">Caption</label>-->
+                                    <!--<div class="col-sm-9">-->
+                                        <!--{{form.caption}}-->
+                                        <!--<span class="help-block"></span>-->
+                                        <!--<span style="color:red">{{ form.errors.caption|linebreaks }}</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 <!--<div class="form-group">-->
                                     <!--<label class="col-sm-2 control-label">Position</label>-->
                                     <!--<div class="col-sm-9">-->

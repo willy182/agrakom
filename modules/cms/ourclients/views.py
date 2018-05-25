@@ -37,20 +37,15 @@ class Create(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = CreateOurClientsForm(request.POST, request.FILES)
-        try:
-            Ourclient.objects.get(name__iexact=request.POST.get('name'))
-            form.errors.title = {'0': "name Already Exists"}
-            return render(request, 'cms/ourclients/add.html', {'form': form})
 
-        except Ourclient.DoesNotExist:
-            if form.is_valid():
-                action = form.save(commit=False)
-                # action.created_by = request.user
-                action.save()
-                return HttpResponseRedirect('/cms-agrakom/ourclients/')
-            else:
-                form = CreateOurClientsForm(request.POST, request.FILES)
-                return render(request, 'cms/ourclients/add.html', {'form': form})
+        if form.is_valid():
+            action = form.save(commit=False)
+            # action.created_by = request.user
+            action.save()
+            return HttpResponseRedirect('/cms-agrakom/ourclients/')
+        else:
+            form = CreateOurClientsForm(request.POST, request.FILES)
+            return render(request, 'cms/ourclients/add.html', {'form': form})
 
 
 class Edit(TemplateView):
@@ -100,15 +95,9 @@ class GetList(BaseDatatableView):
         filter_by = self.request.GET.get(u'filter_by', None)
 
         if search:
-            if filter_by == "name":
-                qs = qs.filter(Q(name__icontains=search))
-            elif filter_by == "description":
-                qs = qs.filter(Q(description__icontains=search))
-            elif filter_by == "status":
+            if filter_by == "status":
                 qs = qs.filter(Q(status__icontains=search))
-            else:
-                qs = qs.filter(
-                    Q(name__icontains=search) | Q(description__icontains=search) | Q(status__icontains=search))
+
 
         return qs
 
@@ -129,17 +118,17 @@ class GetList(BaseDatatableView):
                              '<span class="label label-danger">Not Active</span>' \
                              '</p>' \
                              '</td>'
-                if len(item.description) > 25:
-                    description = item.description[0:25] + ' ...'
-                else:
-                    description = item.description
+                # if len(item.description) > 25:
+                #     description = item.description[0:25] + ' ...'
+                # else:
+                #     description = item.description
 
                 json_data.append([
                     NumberingCounter,
-                    item.name,
-                    description,
+                    # item.name,
+                    # description,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
-                    item.caption,
+                    # item.caption,
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/ourclients/edit/?id=' +

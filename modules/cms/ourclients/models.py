@@ -7,7 +7,7 @@ class Ourclient(models.Model):
     class Meta:
         db_table = 'our_client'
 
-    name = models.CharField(max_length=225)
+    name = models.CharField(max_length=225,blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.FileField(blank=True, null=True, upload_to='static/images/client')
     caption = models.CharField(max_length=225, blank=True, null=True)

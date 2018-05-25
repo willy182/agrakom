@@ -21,7 +21,7 @@ class OurServiceDetail(models.Model):
         db_table = 'our_service_detail'
 
     # our_services = models.ForeignKey(OurServices, on_delete=models.DO_NOTHING)
-    title = models.CharField(max_length=225)
+    title = models.CharField(max_length=225, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.FileField(blank=True, null=True, upload_to='static/images/services')
     # caption = models.CharField(max_length=225, blank=True, null=True)
