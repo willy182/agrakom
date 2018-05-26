@@ -25,7 +25,7 @@
 		<!-- section heading -->
 		<div class="container">
 			<div class="heading separators">
-				<h4 class="uppercase">Whats New</h4>
+				<h4>Whats New</h4>
 			</div>
 		</div>
 		<!-- end section heading -->
@@ -59,7 +59,7 @@
 		<div class="container">
 			<!-- heading -->
 			<div class="heading separators">
-        		<h4 class="uppercase">Who We Are</h4>
+        		<h4>Who We Are</h4>
 			</div>
 			<!-- End heading -->
 			<!-- team block -->
@@ -89,28 +89,22 @@
 
 		<section id="studio" class="section">
 			<div class="heading separators">
-				<h4 class="uppercase">Awards</h4>
+				<h4>Awards</h4>
 			</div>
 			<!--gallery slider -->
 			<div id="info" class="section ">
 				<div class="container">
+				{% if awards.count > 0 %}
 					<ul class="thumbnails">
+					{% for rowAward in awards %}
 						<li class="span4">
 							<div class="thumbnail" style="background-color: #f1f1f1;">
-								<img src="{% static 'img/award.jpg' %}" alt="">
+								<img src="{{ rowAward.image.url }}" alt="">
 							</div>
 						</li>
-						<li class="span4">
-							<div class="thumbnail" style="background-color: #f1f1f1;">
-								<img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="">
-							</div>
-						</li>
-						<li class="span4">
-							<div class="thumbnail" style="background-color: #f1f1f1;">
-								<img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="">
-							</div>
-						</li>
+					{% endfor %}
 					</ul>
+				{% endif %}
 				</div>
 				<div class="clearfix aligncenter">
 					<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
@@ -142,7 +136,7 @@
 		<div class="container">
 			<!-- Heading -->
 			<div class="heading separators-2">
-				<h4 class="uppercase" style="color:#fff;">Clients</h4>
+				<h4 style="color:#fff;">Clients</h4>
 			</div>
 			<!-- Service block -->
 			<div class="row">
@@ -306,7 +300,7 @@
 		<!-- Heading -->
 		<div class="container">
 			<div class="heading separators">
-				<h4 class="uppercase">Product Highlight</h4>
+				<h4>Highlight</h4>
 			</div>
 		</div>
 		<div class="clearfix aligncenter">
@@ -350,10 +344,9 @@
 				// Components
 				slide_links :	'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
 				slides : [
-					{image:"{% static 'img/100b3e5f5b64bd_preview.jpeg' %}"},
-					{image:"{% static 'img/2017_10_30_34900_1509327632._large_preview.jpeg' %}"},
-					{image:"{% static 'img/10516118573_71fca3130b_b_preview.jpeg' %}"},
-					{image:"{% static 'img/Borobudur-Sunrise-and-Merapi-Volcano-_preview.jpeg' %}"}
+				{% for rowSlider in sliders %}
+					{image:"{{ rowSlider.image.url }}"},
+				{% endfor %}
 				]
 			});
 		});

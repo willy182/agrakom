@@ -3803,7 +3803,6 @@ ul.colors li a.active:after {
     text-align: center;
     margin-bottom: 0px;
     font-size: 18px;
-    text-transform: uppercase;
     line-height: 28px;
     padding: 0 50px 20px;
 }
@@ -3817,7 +3816,6 @@ ul.colors li a.active:after {
     text-align: center;
     margin-bottom: 0px;
     font-size: 18px;
-    text-transform: uppercase;
     line-height: 28px;
     padding: 0 50px 20px;
 }
