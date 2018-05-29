@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
@@ -17,7 +19,8 @@ class List(TemplateView):
         return super(List, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        cust_context = {}
+        perms = json.dumps([])
+        cust_context = {'perms':perms}
         return render(request, 'cms/user/index.html', context=cust_context)
 
 
@@ -118,26 +121,65 @@ class GetList(BaseDatatableView):
                     last_log = item.last_login.strftime("%d/%m/%Y %H:%M")
                 else:
                     last_log = ''
+
+                if self.request.user.username == 'adminagrakom':
+                    edit = '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/user/edit/?id=' + str(item.id) + '">''<i class="fa fa-edit"></i>'' \
+                                                ''<span> Edit</span>'' \
+                                                ''<span class="pull-right-container">'' \
+                                                ''<i class="fa pull-left"></i>'' \
+                                                ''</span>'' \
+                                                ''</a>&nbsp&nbsp'' \
+                                                ''<a style="widh:23px;" class="btn btn-info btn-xs" href="/cms-agrakom/user/set-role/?id=' + str(item.id) + '">''<i class="fa fa-edit"></i>'' \
+                                                ''<span> Set Role</span>'' \
+                                                ''<span class="pull-right-container">'' \
+                                                ''<i class="fa pull-left"></i>'' \
+                                                ''</span>'' \
+                                                ''</a>'
+                else:
+                    if (self.request.user.groups.get().permissions.filter(codename='change_user').count() > 0):
+                        edit = '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/user/edit/?id=' +str(item.id) + '">''<i class="fa fa-edit"></i>'' \
+                            ''<span> Edit</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>&nbsp&nbsp'' \
+                            ''<a style="widh:23px;" class="btn btn-info btn-xs" href="/cms-agrakom/user/set-role/?id=' +str(item.id) + '">''<i class="fa fa-edit"></i>'' \
+                            ''<span> Set Role</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'
+                    else:
+                        edit =""
+
+                if self.request.user.username == 'adminagrakom':
+                    delete = '&nbsp&nbsp<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\'' + '/cms-agrakom/user/delete/?id=' + str(
+                        item.id) + '\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                                                   ''<span> Delete</span>'' \
+                                                                   ''<span class="pull-right-container">'' \
+                                                                   ''<i class="fa pull-left"></i>'' \
+                                                                   ''</span>'' \
+                                                                   ''</a>'
+                else:
+
+                    if (self.request.user.groups.get().permissions.filter(codename='delete_user').count() > 0):
+                        delete = '&nbsp&nbsp<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\'' + '/cms-agrakom/user/delete/?id=' + str(
+                            item.id) + '\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                               ''<span> Delete</span>'' \
+                                               ''<span class="pull-right-container">'' \
+                                               ''<i class="fa pull-left"></i>'' \
+                                               ''</span>'' \
+                                               ''</a>'
+                    else:
+                        delete = ''
+
                 json_data.append([
                     NumberingCounter,
                     item.username,
                     marlin_role,
                     last_log,
                     status,
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/user/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>&nbsp|&nbsp'
-                                   '<a style="widh:23px;" class="btn btn-info btn-xs" href="/cms-agrakom/user/set-role/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Set Role</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
+                    edit+delete
 
                 ])
                 NumberingCounter += 1
@@ -173,3 +215,15 @@ class SetRole(TemplateView):
             get_user.groups.add(get_group)
 
         return redirect('/cms-agrakom/user/')
+
+class Delete(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(Delete, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = User.objects.get(id=int(id))
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/user/')

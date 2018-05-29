@@ -18,9 +18,10 @@ class AwardsList(TemplateView):
 
     def get(self, request, *args, **kwargs):
         all_awards = AwardsGalery.objects.filter().order_by("id")
-
+        perms = json.dumps([])
         cust_context = {
             'all_awards': all_awards,
+            'perms':perms,
         }
         return render(request, 'cms/awards/index.html', context=cust_context)
 
@@ -129,6 +130,28 @@ class GetListAwards(BaseDatatableView):
                 # else:
                 #     description = item.description
 
+
+                if (self.request.user.groups.get().permissions.filter(codename='delete_awardsgalery').count() > 0):
+                    delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\''+'/cms-agrakom/awards/delete/?id=' +str(item.id) +'\')" href="#"><i class="fa fa-trash  "></i>'' \
+                            ''<span> Delete</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'
+                else:
+                    delete = ''
+                if (self.request.user.groups.get().permissions.filter(codename='change_awardsgalery').count() > 0):
+
+                    edit= '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/awards/edit/?id=' +str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                            ''<span> Edit</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'' \
+                            ''&nbsp&nbsp'
+                else:
+                    edit = ''
+
                 json_data.append([
                     NumberingCounter,
                     # item.title,
@@ -136,18 +159,25 @@ class GetListAwards(BaseDatatableView):
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/awards/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
+                    edit+delete
 
                 ])
                 NumberingCounter += 1
 
         return json_data
+
+class DeleteAwards(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(DeleteAwards, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = AwardsGalery.objects.get(id=int(id))
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/awards/')
+
 
 
 class AwardsdetailList(TemplateView):

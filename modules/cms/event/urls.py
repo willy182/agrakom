@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from modules.cms.event.views import Create, Edit, List, GetList, CreateDetail, EditDetail, ListDetail, GetListDetail
+from modules.cms.event.views import Create, Edit, List, GetList, CreateDetail, EditDetail, ListDetail, GetListDetail,Delete,DeleteDetail
 
 app_name = 'event'
 urlpatterns = [
@@ -8,10 +8,13 @@ urlpatterns = [
     url(r'^add/$', Create.as_view(), name='add-event'),
     url(r'^edit/$', Edit.as_view(), name='edit-event'),
     url(r'^get-list/$', GetList.as_view(), name='get-event'),
+    url(r'^delete/$', Delete.as_view(), name='delete-event'),
+
     # detail
     url(r'^detail/$', ListDetail.as_view(), name='detail-event'),
     url(r'^detail/add/$', CreateDetail.as_view(), name='add-detil-event'),
     url(r'^detail/edit/$', EditDetail.as_view(), name='edit-detil-event'),
     url(r'^detail/get-list/$', GetListDetail.as_view(), name='get-detail-event'),
+    url(r'^detail/delete/$', DeleteDetail.as_view(), name='delete-detail-event'),
 
 ]

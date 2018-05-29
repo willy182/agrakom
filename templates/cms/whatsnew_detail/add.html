@@ -1,6 +1,7 @@
 {% extends 'cms/layout/base.html' %}
 
 {% block content %}
+{% load templatetags %}
 
 <!-- Full Width Column -->
 <div class="content-wrapper">
@@ -90,8 +91,12 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
+
                                 <a href="/cms-agrakom/whatsnew/detail/" class="btn btn-default">Cancel</a>
+                                {% check_perms request.user.username 'detail whatsnew' action='add_detailwhatsnew' as add_detailwhatsnew %}
+                                {% if add_detailwhatsnew %}
                                 <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                                {% endif %}
                             </div>
                             <!-- /.box-footer -->
                         </form>

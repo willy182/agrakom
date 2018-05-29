@@ -5,7 +5,13 @@ from django.db import models
 # Create your models here.
 class EventGalery(models.Model):
     class Meta:
-        db_table = 'event_galery'
+        db_table = 'cover_highlight'
+        permissions = (
+            ("add_highlight", "Can add highlight"),
+            ("change_highlight", "Can change highlight"),
+            ("delete_highlight", "Can delete highlight"),
+
+        )
 
     title = models.CharField(max_length=225)
     description = models.TextField(blank=True, null=True)
@@ -23,7 +29,13 @@ class EventGalery(models.Model):
 
 class DetailEvent(models.Model):
     class Meta:
-        db_table = 'detail_event'
+        db_table = 'detail_highlight'
+        permissions = (
+            ("add_detail_highlight", "Can add detail highlight"),
+            ("change_detail_highlight", "Can change detail highlight"),
+            ("delete_detail_highlight", "Can delete detail highlight"),
+
+        )
 
     event_galery = models.ForeignKey(EventGalery,on_delete=models.DO_NOTHING)
     image = models.FileField(blank=True, null=True, upload_to='static/images/detail_galery')

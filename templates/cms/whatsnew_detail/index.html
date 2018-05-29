@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load templatetags %}
 
 
 <!-- Full Width Column -->
@@ -29,11 +30,14 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
+                            {% check_perms request.user.username 'detail whatsnew' action='add_detailwhatsnew' as add_detailwhatsnew %}
+                            {% if add_detailwhatsnew %}
                             <p class="pull-right" style="margin-left:10px;">
                                 <a href="/cms-agrakom/whatsnew/detail/add/" class="btn btn-block btn-primary">
                                     <i class="fa fa-user-plus"></i> Create New
                                 </a>
                             </p>
+                            {% endif %}
 
                             <table id="slider" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>

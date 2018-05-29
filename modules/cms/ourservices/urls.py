@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from modules.cms.ourservices.views import Create, Edit, List, GetList, CreateDetail, EditDetail, ListDetail, GetListDetail
+from modules.cms.ourservices.views import Create, Edit, List, GetList, CreateDetail, EditDetail, ListDetail, DeleteDetail,GetListDetail
 
 app_name = 'ourservices'
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^detail/add/$', CreateDetail.as_view(), name='add-detil-services'),
     url(r'^detail/edit/$', EditDetail.as_view(), name='edit-detil-services'),
     url(r'^detail/get-list/$', GetListDetail.as_view(), name='get-detail-services'),
+    url(r'^detail/delete/$', DeleteDetail.as_view(), name='delete-detail-services'),
 
 ]
