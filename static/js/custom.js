@@ -191,25 +191,6 @@ jQuery(document).ready(function($) {
 		itemsTablet: [600,1], //2 items between 600 and 0
 		itemsMobile : [420,1],
 	});
-	
-	//Twitter feed
-	jQuery(function(){
-		jQuery('#tweet').tweetable({
-		username: 'envato', //twitter username 
-		time: true, 
-		rotate: true, 
-		speed: 7000, 
-		limit: 5, 
-		replies: true,
-		position: 'append',
-		failed: "Sorry, twitter is currently unavailable for this user.",
-		loading: "Loading tweets...",
-		html5: true,
-		onComplete:function($ul){
-			$('time').timeago();
-		}
-		});
-	});
 
 	/* Initialize GALLERY SLIDER */	
 	var swiper = jQuery('#swiper').swiper({

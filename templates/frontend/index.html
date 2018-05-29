@@ -31,9 +31,9 @@
 		<!-- end section heading -->
 		<!-- about block -->
 		<div id="info" class="section">
+		{% if whatsnew.count > 0 %}
 			<div class="container">
-			{% if whatsnew.count > 0 %}
-				<ul class="thumbnails">
+				<ul class="thumbnails" id="whatsthumb">
 				{% for row in whatsnew %}
 					<li class="span4">
 						<div class="thumbnail" style="background-color: #f1f1f1;">
@@ -45,11 +45,11 @@
 					</li>
 				{% endfor %}
 				</ul>
-			{% endif %}
 			</div>
 			<div class="clearfix aligncenter">
-				<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
+				<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left" id="btnwhatmore"></div>
 			</div>
+		{% endif %}
 		</div>
 	</section>
 	<!--End about section -->
@@ -92,10 +92,10 @@
 				<h4>Awards</h4>
 			</div>
 			<!--gallery slider -->
-			<div id="info" class="section ">
+			<div id="info" class="section">
 				<div class="container">
 				{% if awards.count > 0 %}
-					<ul class="thumbnails">
+					<ul class="thumbnails" id="awardthumb">
 					{% for rowAward in awards %}
 						<li class="span4">
 							<div class="thumbnail" style="background-color: #f1f1f1;">
@@ -107,26 +107,9 @@
 				{% endif %}
 				</div>
 				<div class="clearfix aligncenter">
-					<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
+					<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left" id="btnaward"></div>
 				</div>
 			</div>
-			<!--<div class="studio">-->
-				<!--<div class="row">-->
-					<!--<div class="col-xs-12">-->
-						<!--<div id="swiper" class="swiper-container">-->
-							<!--<div class="swiper-wrapper">-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/award.jpg' %}" alt="slider image 1" ></div>-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-agency-client.jpg' %}" alt="slider image 2"></div>-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-of-the-best.jpg' %}" alt="slider image 3"/></div>-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-service-agency.jpg' %}" alt="slider image 4"/></div>-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/mix-best-team.jpg' %}" alt="slider image 5"/></div>-->
-								<!--<div class="swiper-slide"><img src="{% static 'img/mix-silver-winner.jpg' %}" alt="slider image 6"/></div>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--End gallery slider -->
 		</section>
 	</section>
 	<!-- End team section -->
@@ -144,153 +127,6 @@
 					<img class="client-logo" src="https://vignette.wikia.nocookie.net/logopedia/images/9/9d/Google_logo_white_2015.svg/revision/latest/scale-to-width-down/640?cb=20150901202125">
 				</div>
 			</div>
-			<!--<div class="row">-->
-				<!--<div class="span3 animated-fast flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-car"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#automotive" data-reveal-id="service01">Automotive</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-tv"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#tv-channel" data-reveal-id="service02">TV Channel</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-credit-card"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#banking" data-reveal-id="service03">Banking</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-fast flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-plane"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#airlines" data-reveal-id="service04">Airlines</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="row">-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-lightbulb"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#home-appliances" data-reveal-id="service05">Home Appliances</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-stethoscope"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#healthcare" data-reveal-id="service06">Healthcare</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-wrench"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#households" data-reveal-id="service07">Households</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fa fa-sitemap"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#networking" data-reveal-id="service08">Networking</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fab fa-android"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#it-product" data-reveal-id="service09">IT Product</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-home"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#property" data-reveal-id="service10">Property</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-medkit"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#pharmaceutical" data-reveal-id="service11">Pharmaceutical</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-wifi"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#telco-product" data-reveal-id="service12">Telco Product</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="span3 animated-slow flyIn">-->
-					<!--<div class="service-box">-->
-						<!--<div class="iconface clearfix">-->
-							<!--<div class="num">-->
-								<!--<div class="bg-numero roda"></div>-->
-								<!--<div class="numero n20"><i class="fas fa-recycle"></i></div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<h2><a href="#consumer-products" data-reveal-id="service13">Consumer Products</a></h2>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
 		</div>
 	</section>
 	<!-- End services section-->
@@ -303,7 +139,7 @@
 				<h4>Highlight</h4>
 			</div>
 		</div>
-		<div class="clearfix aligncenter">
+		<div class="clearfix aligncenter" id="dthighlight">
 	{% if events.count > 0 %}
 		{% for rowEvent in events %}
 			<!-- portfolio item -->
@@ -324,7 +160,7 @@
 	{% endif %}
 		</div>
 		<div class="clearfix aligncenter">
-			<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left"></div>
+			<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left" id="btnhighlight"></div>
 		</div>
 		<div class="clearfix"></div>
 	</section>
@@ -348,6 +184,60 @@
 					{image:"{{ rowSlider.image.url }}"},
 				{% endfor %}
 				]
+			});
+
+			var offsetWhat = 0;
+			var limitWhat = 3;
+			$('#btnwhatmore').click(function() {
+				offsetWhat += 3;
+				limitWhat += 3;
+				$.ajax({
+					type: "GET",
+					url: `/whatsnew/${offsetWhat}/${limitWhat}/`,
+					success: function(result){
+						if (result != '') {
+							$("ul#whatsthumb").append(result);
+						} else {
+							$("#btnwhatmore").hide();
+						}
+					},
+				});
+			});
+
+			var offsetAward = 0;
+			var limitAward = 3;
+			$('#btnaward').click(function() {
+				offsetAward += 3;
+				limitAward += 3;
+				$.ajax({
+					type: "GET",
+					url: `/awards/${offsetAward}/${limitAward}/`,
+					success: function(result){
+						if (result != '') {
+							$("ul#awardthumb").append(result);
+						} else {
+							$("#btnaward").hide();
+						}
+					},
+				});
+			});
+
+			var offsetHighlight = 0;
+			var limitHighlight = 3;
+			$('#btnhighlight').click(function() {
+				offsetHighlight += 3;
+				limitHighlight += 3;
+				$.ajax({
+					type: "GET",
+					url: `/highlight/${offsetHighlight}/${limitHighlight}/`,
+					success: function(result){
+						if (result != '') {
+							$("ul#dthighlight").append(result);
+						} else {
+							$("#btnhighlight").hide();
+						}
+					},
+				});
 			});
 		});
 	</script>

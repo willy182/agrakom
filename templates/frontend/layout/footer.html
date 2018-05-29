@@ -16,26 +16,19 @@
 						<div id="sendmessage">
 							Your message has been sent. Thank you!
 						</div>
-						<form action="email.php" method="POST" class="contactForm clearfix">
-							<div class="field your-name">
-								<input type="text" name="your-name" placeholder="Your Name" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
-								<div class="validation">
-								</div>
-							</div>
+						<form action="" method="POST" class="contactForm clearfix">
 							<div class="field your-email">
-								<input type="text" name="your-email" placeholder="Your Email" class="cform-text" size="40" data-rule="email" data-msg="Please enter a valid email" />
-								<div class="validation">
-								</div>
+								{% csrf_token %}
+								<input type="text" name="email" placeholder="Your Email" class="cform-text" size="40" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
 							</div>
 							<div class="field subject">
 								<input type="text" name="subject" placeholder="Subject" class="cform-text" size="40" data-rule="maxlen:4" data-msg="Please enter at least 8 chars of subject" />
-								<div class="validation">
-								</div>
+								<div class="validation"></div>
 							</div>
 							<div class="field message">
 								<textarea name="message" class="cform-textarea" cols="40" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
-								<div class="validation">
-								</div>
+								<div class="validation"></div>
 							</div>
 							<input type="submit" value="Send message" class="btn btn-theme pull-left">
 						</form>

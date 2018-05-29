@@ -4,5 +4,3 @@ env/*
 *.pyc
 .env
 .idea/
-
-static/images/*
