@@ -1,6 +1,7 @@
 {% extends 'cms/layout/base.html' %}
 
 {% block content %}
+{% load templatetags %}
 
 <!-- Full Width Column -->
 <div class="content-wrapper">
@@ -94,7 +95,10 @@
                             <!-- /.box-body -->
                             <div class="box-footer">
                                 <a href="/cms-agrakom/about-us/slider/" class="btn btn-default">Cancel</a>
+                                {% check_perms request.user.username 'slider about us' action='change_slideraboutus' as change_slideraboutus %}
+                                {% if change_slideraboutus %}
                                 <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                                {% endif %}
                             </div>
                             <!-- /.box-footer -->
                         </form>

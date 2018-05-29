@@ -46,6 +46,24 @@
       readURL(this);
     });
 
+    function delete_confirm(url){
+
+        var r = confirm("Are You Sure!");
+        if (r == true) {
+            document.location.href=url;
+        } else {
+            return false;
+        }
+
+    }
+
+    function delete_info(txt){
+
+        var txt;
+        var r = alert(txt);
+        return false;
+    }
+
     $(function(){
         var table = $("#table_permission");
         var table_body = $("#table_permission tbody");
@@ -187,6 +205,8 @@
             }
         });
     });
+
+
 
 </script>
 

@@ -1,14 +1,28 @@
 {% load static %}
+{% load templatetags %}
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
     <ul class="nav navbar-nav">
+        {% check_perms request.user.username 'about us' as about_us %}
+        {% check_perms request.user.username 'slider about us' as slider %}
+        {% if about_us or slider %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university"></i> &nbsp; About Us &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/cms-agrakom/about-us/">About Us</a></li>
-                <li><a href="/cms-agrakom/about-us/slider/">Slider</a></li>
+
+                {% if about_us %}
+                    <li><a href="/cms-agrakom/about-us/">About Us</a></li>
+                {% endif %}
+
+                {% if slider %}
+                    <li><a href="/cms-agrakom/about-us/slider/">Slider</a></li>
+                {% endif %}
             </ul>
         </li>
+        {% endif %}
+
+        {% check_perms request.user.username 'awards galery' as awards %}
+        {% if awards %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-trophy"></i> &nbsp; Awards &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -16,40 +30,87 @@
                 <!--<li><a href="/cms-agrakom/awards/detail/#">Detail Galery</a></li>-->
             </ul>
         </li>
+        {% endif %}
+
+        {% check_perms request.user.username 'event galery' as highlight %}
+        {% check_perms request.user.username 'detail event' as detail_highlight %}
+
+        {% if highlight or detail_highlight %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar-check-o"></i> &nbsp; Highlight &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/cms-agrakom/event/">Cover Highlight</a></li>
-                <li><a href="/cms-agrakom/event/detail/">Detail Highlight</a></li>
+
+                {% if highlight %}
+                    <li><a href="/cms-agrakom/event/">Cover Highlight</a></li>
+                {% endif %}
+
+                {% if detail_highlight %}
+                    <li><a href="/cms-agrakom/event/detail/">Detail Highlight</a></li>
+                {% endif %}
             </ul>
         </li>
-        <li><a href="/cms-agrakom/ourclients/"> <i class="fa fa-users"> </i> &nbsp;Clients</a></li>
+        {% endif %}
 
+
+        {% check_perms request.user.username 'ourclient' as ourclient %}
+        {% if ourclient %}
+            <li><a href="/cms-agrakom/ourclients/"> <i class="fa fa-users"> </i> &nbsp;Clients</a></li>
+        {% endif %}
+
+
+        {% check_perms request.user.username 'our service detail' as service_detail %}
+        {% if service_detail %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i> &nbsp;Services &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <!--<li><a href="/cms-agrakom/ourservices/">Who We Are</a></li>-->
-                <li><a href="/cms-agrakom/ourservices/detail/">Services</a></li>
+                    <!--<li><a href="/cms-agrakom/ourservices/">Who We Are</a></li>-->
+                    <li><a href="/cms-agrakom/ourservices/detail/">Services</a></li>
             </ul>
         </li>
+        {% endif %}
+
+
+        {% check_perms request.user.username 'detail whatsnew' as detail_whatsnew %}
+        {% check_perms request.user.username 'whatsnew' as whatsnew %}
+        {% if whatsnew or detail_whatsnew %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-newspaper-o"></i> &nbsp; Whatsnew &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/cms-agrakom/whatsnew/">Whatsnew</a></li>
-                <li><a href="/cms-agrakom/whatsnew/detail/">Whatsnew Details</a></li>
+
+                {% if whatsnew %}
+                    <li><a href="/cms-agrakom/whatsnew/">Whatsnew</a></li>
+                {% endif %}
+
+                {% if detail_whatsnew %}
+                    <li><a href="/cms-agrakom/whatsnew/detail/">Whatsnew Details</a></li>
+                {% endif %}
             </ul>
         </li>
+        {% endif %}
 
+
+        {% check_perms request.user.username 'user' as user %}
+        {% check_perms request.user.username 'group' as group %}
+        {% if user or group or request.user.username == 'adminagrakom'  %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> &nbsp; Master &nbsp; <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/cms-agrakom/user/">Admin</a></li>
-                <li class="divider"></li>
-                <li><a href="/cms-agrakom/role/">Role</a></li>
+
+                {% if user or request.user.username == 'adminagrakom' %}
+                     <li><a href="/cms-agrakom/user/">Admin</a></li>
+                     <li class="divider"></li>
+                {% endif %}
+
+                {% if group  or request.user.username == 'adminagrakom' %}
+                    <li><a href="/cms-agrakom/role/">Role</a></li>
+                    <!--<li class="divider"></li>-->
+                    <!--<li><a href="/cms-agrakom/permission/">Permission</a></li>-->
+                {% endif %}
                 <!--<li class="divider"></li>-->
                 <!--<li><a href="/cms-agrakom/permission/">Permission</a></li>-->
             </ul>
         </li>
+         {% endif %}
     </ul>
 
 </div>
@@ -74,7 +135,7 @@
                     <img src="{% static 'cms/images/cms/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
 
                     <p>
-                        {{request.user.username}} - {{request.user.group.0.name}}
+                        {{request.user.username}} - {{request.user.groups.get}}
                         <small>Last Login : {{request.user.last_login}}</small>
                     </p>
                 </li>

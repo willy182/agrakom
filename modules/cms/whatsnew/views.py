@@ -18,9 +18,10 @@ class List(TemplateView):
 
     def get(self, request, *args, **kwargs):
         all_whatsnew = Whatsnew.objects.all().order_by("id")
-
+        perms = json.dumps([])
         cust_context = {
             'all_whatsnew': all_whatsnew,
+            'perms':perms
         }
         return render(request, 'cms/whatsnew/index.html', context=cust_context)
 
@@ -134,6 +135,38 @@ class GetList(BaseDatatableView):
                 else:
                     description = item.description
 
+
+                if (self.request.user.groups.get().permissions.filter(codename='delete_whatsnew').count() > 0):
+
+                    if item.detailwhatsnew_set.all():
+                        delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_info(\'' + 'data tidak bisa dihapus  karena masih memiliki relasi-data' + '\')" href="#">'' \
+                                ''<i class="fa fa-trash  "></i>''<span> Delete</span>'' \
+                                ''<span class="pull-right-container">'' \
+                                ''<i class="fa pull-left"></i>'' \
+                                ''</span>'' \
+                                ''</a>'
+
+                    else:
+                        delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\''+'/cms-agrakom/whatsnew/delete/?id=' +str(item.id) +'\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                ''<span> Delete</span>'' \
+                                ''<span class="pull-right-container">'' \
+                                ''<i class="fa pull-left"></i>'' \
+                                ''</span>'' \
+                                ''</a>'
+                else:
+                    delete = ''
+                if (self.request.user.groups.get().permissions.filter(codename='change_whatsnew').count() > 0):
+
+                    edit= '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/whatsnew/edit/?id=' +str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                            ''<span> Edit</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'' \
+                            ''&nbsp&nbsp'
+                else:
+                    edit = ''
+
                 json_data.append([
                     NumberingCounter,
                     item.title,
@@ -141,19 +174,26 @@ class GetList(BaseDatatableView):
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/whatsnew/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
+                    edit+delete
 
                 ])
                 NumberingCounter += 1
 
         return json_data
 
+
+
+class Delete(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(Delete, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = Whatsnew.objects.get(id=int(id))
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/whatsnew/')
 
 class ListDetail(TemplateView):
     @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
@@ -162,9 +202,10 @@ class ListDetail(TemplateView):
 
     def get(self, request, *args, **kwargs):
         all_detail_whatsnew = DetailWhatsnew.objects.all().order_by("id")
-
+        perms = json.dumps([])
         cust_context = {
             'all_detail_whatsnew': all_detail_whatsnew,
+            'perms':perms
         }
         return render(request, 'cms/whatsnew_detail/index.html', context=cust_context)
 
@@ -269,6 +310,27 @@ class GetListDetail(BaseDatatableView):
                 else:
                     caption = item.caption
 
+                if (self.request.user.groups.get().permissions.filter(codename='delete_detailwhatsnew').count() > 0):
+                    delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\'' + '/cms-agrakom/whatsnew/detail/delete/?id=' + str(
+                        item.id) + '\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                           ''<span> Delete</span>'' \
+                                           ''<span class="pull-right-container">'' \
+                                           ''<i class="fa pull-left"></i>'' \
+                                           ''</span>'' \
+                                           ''</a>'
+                else:
+                    delete = ''
+                if (self.request.user.groups.get().permissions.filter(codename='change_detailwhatsnew').count() > 0):
+
+                    edit = '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/whatsnew/detail/edit/?id=' + str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                                           ''<span> Edit</span>'' \
+                                           ''<span class="pull-right-container">'' \
+                                           ''<i class="fa pull-left"></i>'' \
+                                           ''</span>'' \
+                                           ''</a>'' \
+                                           ''&nbsp&nbsp'
+                else:
+                    edit = ''
 
                 json_data.append([
                     NumberingCounter,
@@ -277,22 +339,20 @@ class GetListDetail(BaseDatatableView):
                     item.whatsnew.title,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
                     status,
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/whatsnew/detail/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
-                    # '&nbsp|&nbsp'
-                    # '<a style="widh:23px;" class="btn btn-danger btn-xs" href="/cms-agrakom/about-us/delete/?id=' +
-                    # str(item.id) +'">''<i class="fa fa-trash  "></i>'
-                    #                '<span> Delete</span>'
-                    #                '<span class="pull-right-container">'
-                    #                '<i class="fa pull-left"></i>'
-                    #                '</span>'
-                    #                '</a>'
+                    edit+delete
                 ])
                 NumberingCounter += 1
 
         return json_data
+
+class DeleteDetail(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(DeleteDetail, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = DetailWhatsnew.objects.get(id=int(id))
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/whatsnew/detail/')

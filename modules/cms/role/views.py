@@ -18,7 +18,8 @@ class List(TemplateView):
         return super(List, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        cust_context = {}
+        perms = json.dumps([])
+        cust_context = {'perms':perms}
         return render(request, 'cms/role/index.html', context=cust_context)
 
 
@@ -137,17 +138,90 @@ class GetList(BaseDatatableView):
         NumberingCounter = 1
         if qs:
             for item in qs:
+
+                if self.request.user.username == 'adminagrakom':
+                    edit = '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/role/edit/?id=' + str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                                                    ''<span> Edit</span>'' \
+                                                    ''<span class="pull-right-container">'' \
+                                                    ''<i class="fa pull-left"></i>'' \
+                                                    ''</span>'' \
+                                                    ''</a>'' \
+                                                    ''&nbsp&nbsp'
+                else:
+                    if (self.request.user.groups.get().permissions.filter(codename='change_group').count() > 0):
+
+                        edit= '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/role/edit/?id=' +str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                                ''<span> Edit</span>'' \
+                                ''<span class="pull-right-container">'' \
+                                ''<i class="fa pull-left"></i>'' \
+                                ''</span>'' \
+                                ''</a>'' \
+                                ''&nbsp&nbsp'
+                    else:
+                        edit = ''
+
+                if self.request.user.username == 'adminagrakom':
+                    if item.user_set.all():
+                        delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_info(\'' + 'data tidak bisa dihapus  karena masih terdapat user yg menggunakan role ini' + '\')" href="#">'' \
+                                ''<i class="fa fa-trash  "></i>''<span> Delete</span>'' \
+                                ''<span class="pull-right-container">'' \
+                                ''<i class="fa pull-left"></i>'' \
+                                ''</span>'' \
+                                ''</a>'
+
+                    else:
+                        delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\'' + '/cms-agrakom/role/delete/?id=' + str(
+                            item.id) + '\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                ''<span> Delete</span>'' \
+                                ''<span class="pull-right-container">'' \
+                                ''<i class="fa pull-left"></i>'' \
+                                ''</span>'' \
+                                ''</a>'
+
+                else:
+
+                    if (self.request.user.groups.get().permissions.filter(codename='delete_group').count() > 0):
+
+                        if item.user_set.all():
+                            delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_info(\'' + 'data tidak bisa dihapus  karena masih terdapat user yg menggunakan role ini' + '\')" href="#">'' \
+                                    ''<i class="fa fa-trash  "></i>''<span> Delete</span>'' \
+                                    ''<span class="pull-right-container">'' \
+                                    ''<i class="fa pull-left"></i>'' \
+                                    ''</span>'' \
+                                    ''</a>'
+
+                        else:
+                            delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\''+'/cms-agrakom/role/delete/?id=' +str(item.id) +'\')" href="#"><i class="fa fa-trash  "></i>'' \
+                                    ''<span> Delete</span>'' \
+                                    ''<span class="pull-right-container">'' \
+                                    ''<i class="fa pull-left"></i>'' \
+                                    ''</span>'' \
+                                    ''</a>'
+                    else:
+                        delete = ''
+
                 json_data.append([
                     NumberingCounter,
                     item.name,
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/role/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
+                    edit+delete
+
                 ])
                 NumberingCounter += 1
 
         return json_data
+
+class Delete(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(Delete, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = Group.objects.get(id=int(id))
+        all_permission_group  = delete_data.permissions.all()
+        for row in all_permission_group:
+            permission = Permission.objects.get(id=row.id)
+            delete_data.permissions.remove(permission)
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/role/')

@@ -18,9 +18,10 @@ class List(TemplateView):
 
     def get(self, request, *args, **kwargs):
         all_client = Ourclient.objects.all().order_by("id")
-
+        perms = json.dumps([])
         cust_context = {
             'all_client': all_client,
+            'perms':perms
         }
         return render(request, 'cms/ourclients/index.html', context=cust_context)
 
@@ -123,6 +124,29 @@ class GetList(BaseDatatableView):
                 # else:
                 #     description = item.description
 
+
+                if (self.request.user.groups.get().permissions.filter(codename='delete_ourclient').count() > 0):
+
+                    delete = '<a style="widh:23px;" class="btn btn-danger btn-xs" onclick="delete_confirm(\''+'/cms-agrakom/ourclients/delete/?id=' +str(item.id) +'\')" href="#"><i class="fa fa-trash  "></i>'' \
+                            ''<span> Delete</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'
+                else:
+                    delete = ''
+                if (self.request.user.groups.get().permissions.filter(codename='change_ourclient').count() > 0):
+
+                    edit= '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/ourclients/edit/?id=' +str(item.id) + '"><i class="fa fa-edit"></i>'' \
+                            ''<span> Edit</span>'' \
+                            ''<span class="pull-right-container">'' \
+                            ''<i class="fa pull-left"></i>'' \
+                            ''</span>'' \
+                            ''</a>'' \
+                            ''&nbsp&nbsp'
+                else:
+                    edit = ''
+
                 json_data.append([
                     NumberingCounter,
                     # item.name,
@@ -131,15 +155,21 @@ class GetList(BaseDatatableView):
                     # item.caption,
                     status,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
-                    '<a style="widh:23px;" class="btn btn-warning btn-xs" href="/cms-agrakom/ourclients/edit/?id=' +
-                    str(item.id) + '">''<i class="fa fa-edit"></i>'
-                                   '<span> Edit</span>'
-                                   '<span class="pull-right-container">'
-                                   '<i class="fa pull-left"></i>'
-                                   '</span>'
-                                   '</a>'
+                    edit+delete
 
                 ])
                 NumberingCounter += 1
 
         return json_data
+
+class Delete(TemplateView):
+    @method_decorator(login_required(login_url='/cms-agrakom/auth/login/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(Delete, self).dispatch(request, *args, **kwargs)
+
+    # @method_decorator(permission_required('awb.create_third_party_logistics', raise_exception=True))
+    def get(self, request, *args, **kwargs):
+        id = request.GET.get('id')
+        delete_data = Ourclient.objects.get(id=int(id))
+        delete_data.delete()
+        return HttpResponseRedirect('/cms-agrakom/ourclients/')

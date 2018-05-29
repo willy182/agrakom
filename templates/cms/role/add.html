@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load templatetags %}
 
 <!-- Full Width Column -->
 <div class="content-wrapper">
@@ -81,7 +82,10 @@
                             <!-- /.box-body -->
                             <div class="box-footer">
                                 <a href="/cms-agrakom/role/" class="btn btn-default">Cancel</a>
+                                {% check_perms request.user.username 'group' action='add_group' as add_group %}
+                                {% if add_group  or request.user.username == 'adminagrakom' %}
                                 <button type="submit" class="btn btn-info pull-right" name="submit-role-menu" id="submitButton" disabled>Submit</button>
+                                {% endif %}
                             </div>
                             <!-- /.box-footer -->
                         </form>

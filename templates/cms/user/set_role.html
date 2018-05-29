@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load templatetags %}
 
 <!-- Full Width Column -->
 <div class="content-wrapper">
@@ -68,7 +69,10 @@
                             <!-- /.box-body -->
                             <div class="box-footer">
                                 <a href="/cms-agrakom/user/" class="btn btn-default">Cancel</a>
-                                <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                                {% check_perms request.user.username 'user' action='change_user' as change_user %}
+                                {% if change_user or request.user.username == 'adminagrakom'  %}
+                                    <button type="submit" class="btn btn-info pull-right" name="submit-role-menu">Submit</button>
+                                {% endif %}
                             </div>
                             <!-- /.box-footer -->
                         </form>

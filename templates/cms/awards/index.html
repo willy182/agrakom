@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load templatetags %}
 
 
 <!-- Full Width Column -->
@@ -29,11 +30,14 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
+                            {% check_perms request.user.username 'awards galery' action='add_awardsgalery' as add_awardsgalery %}
+                            {% if add_awardsgalery %}
                             <p class="pull-right" style="margin-left:10px;">
                                 <a href="/cms-agrakom/awards/add/" class="btn btn-block btn-primary">
                                     <i class="fa fa-user-plus"></i> Create New
                                 </a>
                             </p>
+                            {% endif %}
 
 
                             <table id="aboutus" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">

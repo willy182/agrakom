@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from modules.cms.awards.views import CreateAwards, EditAwards, AwardsList, GetListAwards, AwardsdetailList, EditDetailGalery, CreateDetailGalery, GetListDetailGalery
+from modules.cms.awards.views import CreateAwards, EditAwards, AwardsList, GetListAwards, AwardsdetailList, EditDetailGalery, CreateDetailGalery, GetListDetailGalery, DeleteAwards
 
 app_name = 'awards'
 urlpatterns = [
@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^add/$', CreateAwards.as_view(), name='add-awards'),
     url(r'^edit/$', EditAwards.as_view(), name='edit-awards'),
     url(r'^get-list/$', GetListAwards.as_view(), name='get-awards'),
+    url(r'^delete/$', DeleteAwards.as_view(), name='delete-awards'),
+
     # detail
     url(r'^detail/$', AwardsdetailList.as_view(), name='detail-galery'),
     url(r'^detail/add/$', CreateDetailGalery.as_view(), name='add-detil-galery'),
