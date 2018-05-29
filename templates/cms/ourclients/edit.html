@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Image</label>
                                     <div class="col-sm-9">
-                                        {{form.image}}
+                                        <input type="file" name="image" class="form-control" id="img_input" >
                                         <span class="help-block"></span>
                                         {% if form.errors.image %}
                                             {% for err_image in form.errors.image %}
