@@ -33,14 +33,14 @@
 
                         {% csrf_token %}
                             <div class="box-body">
-                                <!--<div class="form-group">-->
-                                    <!--<label class="col-sm-2 control-label">Our Service</label>-->
-                                    <!--<div class="col-sm-9">-->
-                                        <!--{{form.our_services}}-->
-                                        <!--<span class="help-block"></span>-->
-                                        <!--<span style="color:red">{{ form.errors.our_services|linebreaks }}</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Title</label>
+                                    <div class="col-sm-9">
+                                        {{form.title}}
+                                        <span class="help-block"></span>
+                                        <span style="color:red">{{ form.errors.title|linebreaks }}</span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Images</label>
                                     <div class="col-sm-9">
