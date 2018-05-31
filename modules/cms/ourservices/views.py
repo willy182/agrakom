@@ -293,7 +293,7 @@ class GetListDetail(BaseDatatableView):
                     edit = ''
                 json_data.append([
                     NumberingCounter,
-                    # item.title,
+                    item.title,
                     '<img style="height:25px;width:25px;text-align:center" src="/' + item.image.url + '" onerror="this.src=''\'/static/images/no-image.png''\';" class="user-image" alt="User Image">',
                     description,
                     item.created_datetime.strftime("%d/%m/%Y %H:%M"),
