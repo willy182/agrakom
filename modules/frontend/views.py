@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView
 from modules.cms.aboutus.models import AboutUs, SliderAboutUs
 from modules.cms.awards.models import AwardsGalery
 from modules.cms.event.models import EventGalery, DetailEvent
+from modules.cms.ourclients.models import Ourclient
 from modules.cms.ourservices.models import OurServiceDetail
 from modules.cms.whatsnew.models import Whatsnew, DetailWhatsnew
 
@@ -20,16 +21,19 @@ class HomeAgrakom(TemplateView):
 
         dataWhoWeAre =  OurServiceDetail.objects.filter(status='True').order_by('-id')[:4]
 
-        dataAwards = AwardsGalery.objects.filter(status='True').order_by('-id')[:3]
+        dataAwards = AwardsGalery.objects.filter(status='True').order_by('-id')[:6]
 
-        dataEvents =  EventGalery.objects.filter(status='True').order_by('-id')[:3]
+        dataClients =  Ourclient.objects.filter(status='True').order_by('-id')[:5]
+
+        dataEvents =  EventGalery.objects.filter(status='True').order_by('-id')[:6]
 
         dataAboutUs = AboutUs.objects.filter(status='True').order_by('-id')[:1]
 
         return render(request, 'frontend/index.html', {
             'sliders': dataSlider, 'whatsnew': dataWhatsnew,
             'whoweare': dataWhoWeAre, 'awards': dataAwards,
-            'events': dataEvents, 'aboutus': dataAboutUs[0]
+            'events': dataEvents, 'clients': dataClients,
+            'aboutus': dataAboutUs[0]
         })
 
     def post(self, request, *args, **kwargs):
@@ -101,6 +105,21 @@ class AwardAjax(TemplateView):
 
         return HttpResponse(data)
 
+class ClientAjax(TemplateView):
+    def get(self, request, *args, **kwargs):
+        offset = int(kwargs['offset'])
+        limit = int(kwargs['limit'])
+        dataClient = Ourclient.objects.filter(status='True').order_by('-id')[offset:limit]
+
+        data = ''
+        if dataClient.count() > 0:
+            for row in dataClient:
+                data += '<div class="client">' \
+                            '<img class="client-logo" src="' + row.image.url + '">' \
+                        '</div>'
+
+        return HttpResponse(data)
+
 class HighlightAjax(TemplateView):
     def get(self, request, *args, **kwargs):
         offset = int(kwargs['offset'])
@@ -112,7 +131,7 @@ class HighlightAjax(TemplateView):
             for row in dataHighlight:
                 data += '<div class="portfolio-item">' \
                             '<div class="portfolio clearfix">' \
-                                '<a href="/detail-event/' + row.id + '/' + slugify(row.title) + '" class="portfolio-image">' \
+                                '<a href="/detail-event/' + str(row.id) + '/' + slugify(row.title) + '" class="portfolio-image">' \
                                     '<img src="' + row.image.url + '" alt="" />' \
                                     '<div class="portfolio-overlay">' \
                                         '<div class="thumb-info">' \

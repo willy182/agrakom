@@ -25,7 +25,7 @@
 		<!-- section heading -->
 		<div class="container">
 			<div class="heading separators">
-				<h4>Whats New</h4>
+				<h4 style="color: #3AA190;">Whats New</h4>
 			</div>
 		</div>
 		<!-- end section heading -->
@@ -95,19 +95,19 @@
 			<div id="info" class="section">
 				<div class="container">
 				{% if awards.count > 0 %}
-					<ul class="thumbnails" id="awardthumb">
+					<div class="row">
 					{% for rowAward in awards %}
-						<li class="span4">
-							<div class="thumbnail" style="background-color: #f1f1f1;">
-								<img src="{{ rowAward.image.url }}" alt="">
+						<div class="span4">
+							<div class="awrds">
+								<img class="awrds-logo" src="{{ rowAward.image.url }}">
 							</div>
-						</li>
+						</div>
 					{% endfor %}
-					</ul>
+					</div>
 				{% endif %}
 				</div>
 				<div class="clearfix aligncenter">
-					<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left" id="btnaward"></div>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/B961ypoo0I4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 			</div>
 		</section>
@@ -119,13 +119,20 @@
 		<div class="container">
 			<!-- Heading -->
 			<div class="heading separators-2">
-				<h4 style="color:#fff;">Clients</h4>
+				<h4 style="color:#111;">Clients</h4>
 			</div>
 			<!-- Service block -->
-			<div class="row">
+		{% if clients.count > 0 %}
+			<div class="row" id="clientthumb">
+			{% for rowClient in clients %}
 				<div class="client">
-					<img class="client-logo" src="https://vignette.wikia.nocookie.net/logopedia/images/9/9d/Google_logo_white_2015.svg/revision/latest/scale-to-width-down/640?cb=20150901202125">
+					<img class="client-logo" src="{{ rowClient.image.url }}">
 				</div>
+			{% endfor %}
+			</div>
+		{% endif %}
+			<div class="clearfix aligncenter">
+				<div class="load-more"><input type="submit" value="Load More" class="btn btn-theme pull-left" id="btnclient"></div>
 			</div>
 		</div>
 	</section>
@@ -204,35 +211,35 @@
 				});
 			});
 
-			var offsetAward = 0;
-			var limitAward = 3;
-			$('#btnaward').click(function() {
-				offsetAward += 3;
-				limitAward += 3;
+			var offsetClient = 0;
+			var limitClient = 10;
+			$('#btnclient').click(function() {
+				offsetClient += 10;
+				limitClient += 10;
 				$.ajax({
 					type: "GET",
-					url: `/awards/${offsetAward}/${limitAward}/`,
+					url: `/clients/${offsetClient}/${limitClient}/`,
 					success: function(result){
 						if (result != '') {
-							$("ul#awardthumb").append(result);
+							$("div#clientthumb").append(result);
 						} else {
-							$("#btnaward").hide();
+							$("#btnclient").hide();
 						}
 					},
 				});
 			});
 
 			var offsetHighlight = 0;
-			var limitHighlight = 3;
+			var limitHighlight = 6;
 			$('#btnhighlight').click(function() {
-				offsetHighlight += 3;
-				limitHighlight += 3;
+				offsetHighlight += 6;
+				limitHighlight += 6;
 				$.ajax({
 					type: "GET",
 					url: `/highlight/${offsetHighlight}/${limitHighlight}/`,
 					success: function(result){
 						if (result != '') {
-							$("ul#dthighlight").append(result);
+							$("div#dthighlight").append(result);
 						} else {
 							$("#btnhighlight").hide();
 						}
