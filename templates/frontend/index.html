@@ -10,7 +10,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="span12">
-						<div id="main-flexslider" class="flexslider"></div>
+						<div id="main-flexslider" class="flexslider">
+							<div class="span12">
+								<h1 style="font-weight: 400; background-color: none; margin-top: 25%;">ASSIST YOUR COMPANY & BRAND<br> IN INDONESIA</h1>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -55,7 +59,7 @@
 	<!--End about section -->
 
 	<!--Team Section -->
-	<section id="team" class="section">
+	<section id="team" class="section" style="background: url({% static 'img/who.jpg' %})";>
 		<div class="container">
 			<!-- heading -->
 			<div class="heading separators">
@@ -66,10 +70,9 @@
 			<div class="row exp_block">
 		{% if whoweare.count > 0 %}
 			{% for val in whoweare %}
-				<!-- block-1 -->
 				<div class="span3 flyIn">
 					<a class="exp_tt">
-						<img alt="Public Relation" class="face" src="{{ val.image.url }}">
+						<img alt="Public Relation" class="face" src="{{ val.image.url }}" style="background: #f39c12; border:5px solid #f39c12">
 						<div class="archive">
 							<div id="content">
 								<div class="post type-post status-publish format-standard hentry category-uncategorized entry">
@@ -86,33 +89,44 @@
 		{% endif %}
 			</div>
 		</div>
+	</section>
 
-		<section id="studio" class="section">
-			<div class="heading separators">
-				<h4>Awards</h4>
-			</div>
-			<!--gallery slider -->
-			<div id="info" class="section">
-				<div class="container">
-				{% if awards.count > 0 %}
-					<div class="row">
-					{% for rowAward in awards %}
-						<div class="span4">
-							<div class="awrds">
-								<img class="awrds-logo" src="{{ rowAward.image.url }}">
-							</div>
+	<section id="studio" class="section" style="background: #fff; padding-bottom: 20px;">
+		<div class="heading separators">
+			<h4>Awards</h4>
+		</div>
+		<!--gallery slider -->
+		<div id="info" class="section">
+			<div class="container">
+			{% if awards.count > 0 %}
+				<div class="row">
+				{% for rowAward in awards %}
+					<div class="span4">
+						<div class="awrds">
+							<img class="awrds-logo" src="{{ rowAward.image.url }}">
 						</div>
-					{% endfor %}
 					</div>
-				{% endif %}
+				{% endfor %}
 				</div>
-				<div class="clearfix aligncenter">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/B961ypoo0I4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				</div>
+			{% endif %}
 			</div>
-		</section>
+		</div>
 	</section>
 	<!-- End team section -->
+
+	<!-- section videos -->
+	<section id="videos" class="section-2" style="background: url({% static 'img/who.jpg' %});">
+	<div class="container">
+		<div class="clearfix aligncenter">
+			<div class="container">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Rqe93wHYJjE"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!-- end section videos -->
 
 	<!-- section: services -->
 	<section id="services" class="section">
